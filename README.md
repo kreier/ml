@@ -1,6 +1,6 @@
 ## ml - machine learning
 
-Documentation of my learning progress. Inspired by object detection for cars with DarkNet and David's bachellor work in connection with a car at the end of 2018 I started to learn more about machine learning.
+This is just a documentation of my learning progress. Inspired by object detection for cars with DarkNet and David's bachelor work at [HCMUTE](http://en.hcmute.edu.vn/) in connection with a car at the end of 2018 I started to learn more about machine learning.
 
 Posenet runs on TensorFlow.lite in a browser on WebGL even on a smartphone. We tested it in December 2018 in Seoul, Korea. In March 2019 I got TensorFlow.js running with my RX470 with 43 fps. 
 
