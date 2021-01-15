@@ -1,6 +1,6 @@
 ## ml - machine learning
 
-Documentation of my learning progress. Inspired by object detection for cars with DarkNet and David's bachellor work in connection with a car at the end of 2018 I started to learn more about machine learning.
+This is just a documentation of my learning progress. Inspired by object detection for cars with DarkNet and David's bachelor work at [HCMUTE](http://en.hcmute.edu.vn/) in connection with a car at the end of 2018 I started to learn more about machine learning.
 
 Posenet runs on TensorFlow.lite in a browser on WebGL even on a smartphone. We tested it in December 2018 in Seoul, Korea. In March 2019 I got TensorFlow.js running with my RX470 with 43 fps. 
 
@@ -51,7 +51,7 @@ More about the certificate [here on medium](https://medium.com/@harshit_tyagi/go
 ## History
 
 - __February 2020__ The Jetson car is purcheased, Wifi module and 7" display as well. Needs completion - without students due to COVID-19
-- __December 2019__ On [hackster.io](https://hackster.io) a new competition starts where you can win a Jetson Nano. I apply and eventually just buy one
+- __December 2019__ On [hackster.io](https://hackster.io) starts a new competition [AI at the Edge Challenge](https://www.hackster.io/contests/NVIDIA) where you can win a Jetson Nano. I apply and eventually just buy one from [arrow](https://www.arrow.com/)
 - __March 2019__ posenet runs in the browser with new RX470 with 43 fps
 - __December 2018__ TensorFlow.lite in a browser on my iPhone 7 runs at 6 fps, demonstrated in Seoul
 - __October 2018__ Successful installed darknet on ubuntu, object detection works for stills. Not yet webcam or video.
