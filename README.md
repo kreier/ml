@@ -51,7 +51,7 @@ More about the certificate [here on medium](https://medium.com/@harshit_tyagi/go
 ## History
 
 - __February 2020__ The Jetson car is purcheased, Wifi module and 7" display as well. Needs completion - without students due to COVID-19
-- __December 2019__ On [hackster.io](https://hackster.io) a new competition starts where you can win a Jetson Nano. I apply and eventually just buy one
+- __December 2019__ On [hackster.io](https://hackster.io) starts a new competition [AI at the Edge Challenge](https://www.hackster.io/contests/NVIDIA) where you can win a Jetson Nano. I apply and eventually just buy one from [arrow](https://www.arrow.com/)
 - __March 2019__ posenet runs in the browser with new RX470 with 43 fps
 - __December 2018__ TensorFlow.lite in a browser on my iPhone 7 runs at 6 fps, demonstrated in Seoul
 - __October 2018__ Successful installed darknet on ubuntu, object detection works for stills. Not yet webcam or video.
