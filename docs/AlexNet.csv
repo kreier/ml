@@ -1,0 +1,16 @@
+layer,size,architecture,memory,parameter
+INPUT,227x227x3,,"154,587",0
+CONV1,55x55x96,"96 11x11 filters at stride 4, pad 0","290,400","11,616"
+MAX POOL1,27x27x96,3x3 filters at stride 2,"69,984",0
+NORM1,27x27x96,Normalization layer,"69,984",0
+CONV2,27x27x256,"256 5x5 filters at stride 1, pad 2","186,624","6,400"
+MAX POOL2,13x13x256,3x3 filters at stride 2,"43,264",0
+NORM 2,13x13x256,Normalization layer,"43,264",0
+CONV3,13x13x384,"384 3x3 filters at stride 1, pad 1","64,896","3,456"
+CONV4,13x13x384,"384 3x3 filters at stride 1, pad 1","64,896","3,456"
+CONV5,13x13x256,"256 3x3 filters at stride 1, pad 1","43,264","2,304"
+MAX POOL3,6x6x256,3x3 filters at stride 2,"9,216",0
+FC6,4096,,"4,096",0
+FC7,4096,,"4,096",0
+FC8,1000,100 neurons (class scores),"1,000",0
+,,,"1,049,571","27,232"
