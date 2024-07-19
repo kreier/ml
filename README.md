@@ -6,6 +6,12 @@ Posenet runs on TensorFlow.lite in a browser on WebGL even on a smartphone. We t
 
 ![Posenet the park](TensorFlow.js/posenet/2019-03_thepark.jpg)
 
+During 2019 NVIDIA announced the [Jetson Nano](https://en.wikipedia.org/wiki/Nvidia_Jetson) developer kit and with students from AISVN we try to win one in a competition. Eventually we order a package.
+
+![Jetson Nano car](https://kreier.github.io/jetson-car/pic/2019_jetson_car.jpg)
+
+Early 2020 some supply chains delay orders, but we finally have the hardware. Now it needs to be combined - and development stalls until 2024.
+
 ## Facemesh example
 
 <!--
@@ -53,7 +59,8 @@ More about the certificate [here on medium](https://medium.com/@harshit_tyagi/go
 
 ## History
 
-- __February 2020__ The Jetson car is purcheased, Wifi module and 7" display as well. Needs completion - without students due to COVID-19
+- __July 2024__ Reactivated the [https://kreier.github.io/jetson-car/](https://kreier.github.io/jetson-car/) project. The hardware is from 2019 (NVIDIA) but the software is still Ubuntu 18.04 LTS. Updates brake simple things like `make` and `gcc`.
+- __February 2020__ The Jetson car is purchased, Wifi module and 7" display as well. Needs completion - without students due to COVID-19
 - __December 2019__ On [hackster.io](https://hackster.io) starts a new competition [AI at the Edge Challenge](https://www.hackster.io/contests/NVIDIA) where you can win a Jetson Nano. I apply and eventually just buy one from [arrow](https://www.arrow.com/)
 - __March 2019__ posenet runs in the browser with new RX470 with 43 fps
 - __December 2018__ TensorFlow.lite in a browser on my iPhone 7 runs at 6 fps, demonstrated in Seoul
