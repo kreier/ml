@@ -1,6 +1,6 @@
-## ml - machine learning
+# ML - machine learning
 
-This is just a documentation of my learning progress. Inspired by object detection for cars with DarkNet and David's bachelor work at [HCMUTE](http://en.hcmute.edu.vn/) in connection with a car at the end of 2018 I started to learn more about machine learning.
+This is just a documentation of my learning progress. Inspired by object detection for cars with DarkNet (see this [TED talk from 2017](https://www.youtube.com/watch?v=Cgxsv1riJhI) by Joseph Redmon) and David's bachelor work at [HCMUTE](http://en.hcmute.edu.vn/) in connection with a car at the end of 2018 I started to learn more about machine learning.
 
 Posenet runs on TensorFlow.lite in a browser on WebGL even on a smartphone. We tested it in December 2018 in Seoul, Korea. In March 2019 I got TensorFlow.js running with my RX470 with 43 fps. 
 
@@ -8,7 +8,10 @@ Posenet runs on TensorFlow.lite in a browser on WebGL even on a smartphone. We t
 
 ## Facemesh example
 
+<!--
 ![Facemesh example](https://github.com/tensorflow/tfjs-models/blob/master/facemesh/demo.gif?raw=true)
+-->
+![Facemesh example](https://github.com/kreier/ml/blob/main/pic/facemesh.gif?raw=true)
 
 ## Schedule
 
@@ -37,7 +40,7 @@ Some of these libraries are Pandas (data manipulation and analysis), Numpy (supp
 - [Coursera Deep Learning](https://www.coursera.org/specializations/deep-learning?#courses)
 - [Inner workings of DNN in practical implementations](https://medium.com/analytics-vidhya/what-i-learned-from-building-a-deep-neural-network-from-scratch-and-why-you-should-do-it-too-a2e6f422d3db)
 
-### 5. TensorFlow
+### 5. TensorFlow Certificate
 
 - [Coursera TensorFlow in Practice](https://www.coursera.org/professional-certificates/tensorflow-in-practice#courses)
 
@@ -45,7 +48,7 @@ One reason for tensorflow can be seen in this graph regarding popularity on stac
 
 ![popularity tensorflow](pic/tensorflow_stack_overflow.png)
 
-More about the certificate [here on medium](https://medium.com/@harshit_tyagi/google-certified-tensorflow-developer-learning-plan-tips-faqs-my-journey-9f88016048e3).
+More about the certificate [here on medium](https://medium.com/@harshit_tyagi/google-certified-tensorflow-developer-learning-plan-tips-faqs-my-journey-9f88016048e3). It was [introduced in March 2020](https://blog.tensorflow.org/2020/03/introducing-tensorflow-developer-certificate.html) but by 2024 it [no longer exists](https://www.tensorflow.org/certificate).
 
 
 ## History
@@ -54,4 +57,4 @@ More about the certificate [here on medium](https://medium.com/@harshit_tyagi/go
 - __December 2019__ On [hackster.io](https://hackster.io) starts a new competition [AI at the Edge Challenge](https://www.hackster.io/contests/NVIDIA) where you can win a Jetson Nano. I apply and eventually just buy one from [arrow](https://www.arrow.com/)
 - __March 2019__ posenet runs in the browser with new RX470 with 43 fps
 - __December 2018__ TensorFlow.lite in a browser on my iPhone 7 runs at 6 fps, demonstrated in Seoul
-- __October 2018__ Successful installed darknet on ubuntu, object detection works for stills. Not yet webcam or video.
+- __October 2018__ Successful installed darknet on ubuntu, object detection works for stills. Don't have a webcam, video does not work yet.
