@@ -62,7 +62,7 @@ More about the certificate [here on medium](https://medium.com/@harshit_tyagi/go
 
 ## 2022 - Teach ML in [Advanced Automation](https://github.com/ssis-aa) at SSIS in Unit 5
 
-<img src="https://lh3.googleusercontent.com/UkxXdHHJ8DBBJBAUY1v9D0AUTpC0wC0U8kmfPMpXCAr2WWG3jyoWxLdy1CB0PJayv-CMkLkIMJths5L_AXWLVTM=w1280" width="30%" align="right">
+<img src="https://kreier.github.io/ml/pic/nn_2022.jpg" width="30%" align="right">
 
 As covered in a [SSIS Stories](https://www.ssis.edu.vn/student-life/post-details/~board/hs/post/robots-on-a-roll-automation-and-algorithms) in March 2022 we made great progress in creating our own Neural Network, Training it and then doing interference on them. See also [our website](https://sites.google.com/ssis.edu.vn/automation).
 
