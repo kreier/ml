@@ -68,7 +68,7 @@ As covered in a [SSIS Stories](https://www.ssis.edu.vn/student-life/post-details
 
 ## 2024 - start with LLMs
 
-Andrej Karpathy offers a step-py-step guide to build your own Generative Pre-trained Transformer (GPT) starting with 1,000,000 characters from Shakespeare that you can train on your own GPU. Well, at least if it supports CUDA >7.0, otherwise the compiler throws an error (like on my slightly older GTX 960):
+Andrej Karpathy offers a step-py-step guide to build your own Generative Pre-trained Transformer (GPT) starting with 1,000,000 characters from Shakespeare that you can train on your own GPU. Well, at least if it supports CUDA >7.0, otherwise the [triton compiler](https://github.com/triton-lang/triton) throws an error (like on my slightly older GTX 960):
 
 ``` sh
 torch._dynamo.exc.BackendCompilerFailed: backend='inductor' raised:
@@ -91,6 +91,14 @@ Let's see what I have and what CUDA capabilities these support:
 | RTX3070 Ti   |       6144 |         8.6        | i3-10100    | Ampere (2020)  |    8 |
 
 Only __two__ of 8 are supported by the Triton GPU compiler. How about a newer GPU? At least I can use the T4 in Google's collaboratory for free. The training taikes one hour. And you get two hours for free.
+
+### Triton Compatibility (supported hardware):
+
+- NVIDIA GPUs (Compute Capability 7.0+)
+- AMD GPUs (ROCm 5.2+)
+- Under development: CPUs
+
+My AMD RX 470, RX 580 and RX 6600 are too old to be [supported by ROCm](https://rocm.docs.amd.com/en/latest/compatibility/compatibility-matrix.html), even though the 6600 already uses [RNDA2](https://en.wikipedia.org/wiki/RDNA_2). And can be used if the llvm target is overwritten to be gfx1030 instead of [gfx1032](https://rocm.docs.amd.com/projects/install-on-windows/en/latest/reference/system-requirements.html). Given the history of Nvidia with [CUDA since 2007](https://en.wikipedia.org/wiki/CUDA) that dropped support for the first Tesla GPUs with Compute Capability 1.1 only with CUDA SDK 7.0 this is quite a difference. For CUDA SDK 12.0 a CC of 5.0 (Maxwell and newer) is required. That's true [for ollama](https://github.com/ollama/ollama/blob/main/docs/gpu.md), too.
 
 ## History
 
