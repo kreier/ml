@@ -106,7 +106,7 @@ Only __two__ of 8 are supported by the Triton GPU compiler. How about a newer GP
 - AMD GPUs (ROCm 5.2+)
 - Under development: CPUs
 
-My AMD RX 470, RX 580 and RX 6600 are too old to be [supported by ROCm](https://rocm.docs.amd.com/en/latest/compatibility/compatibility-matrix.html), even though the 6600 already uses [RNDA2](https://en.wikipedia.org/wiki/RDNA_2). And can be used if the llvm target is overwritten to be gfx1030 instead of [gfx1032](https://rocm.docs.amd.com/projects/install-on-windows/en/latest/reference/system-requirements.html). Given the history of Nvidia with [CUDA since 2007](https://en.wikipedia.org/wiki/CUDA) that dropped support for the first Tesla GPUs with Compute Capability 1.1 only with CUDA SDK 7.0 this is quite a difference. For CUDA SDK 12.0 a CC of 5.0 (Maxwell and newer) is required. That's true [for ollama](https://github.com/ollama/ollama/blob/main/docs/gpu.md), too.
+My AMD RX 470, RX 580 and RX 6600 are too old to be [supported by ROCm](https://rocm.docs.amd.com/en/latest/compatibility/compatibility-matrix.html), even though the 6600 already uses [RNDA2](https://en.wikipedia.org/wiki/RDNA_2). And can be used if the llvm target is overwritten to be gfx1030 instead of [gfx1032](https://rocm.docs.amd.com/projects/install-on-windows/en/latest/reference/system-requirements.html). The ROCm installation needs 30 GB! Nvidia is ahead of the game for some time now with [CUDA since 2007](https://en.wikipedia.org/wiki/CUDA). Support for the first Tesla GPUs with Compute Capability 1.1 was only dropped with CUDA SDK 7.0 in 2016. For the current CUDA SDK 12.0 (since 2022) a CC of 5.0 (Maxwell and newer since 2014) is required. That's true [for ollama](https://github.com/ollama/ollama/blob/main/docs/gpu.md), too. In 2024 that's 10 year old hardware.
 
 ## Inference on local hardware
 
@@ -114,9 +114,13 @@ In early 2023 I ran a 8b model with a 4bit quantization on my MacBook Pro at SSI
 
 ![performance](pic/llm_cpu_gpu_tokens.png)
 
-Turns out that the token creation rate is inverse proportional to the size of the model! A large model might fit into your RAM or VRAM, but the larger the model, the slower an answer will be. I found 20 tokens/s and faster a respectable speed to use an LLM, and looking at the graph you see what hardware you will need. And that CPUs are out of the question. Both RX 6600 and RTX 3060 Ti have 8GB of RAM, and if the used VRAM gets closer to the limit the spead significantly decreases. I got the RX 6600 for $130 and the RTX 3060 Ti for $200. To get the same performance of a 8b model for a 70b model I would need a RTX A6000 Ada with 48 GB of RAM for $6000. Yet the accuracy would be nice:
+Turns out that the token creation rate is inverse proportional to the size of the model! A large model might fit into your RAM or VRAM, but the larger the model, the slower an answer will be. The above graph has quantization 4 bit to fp16, yet the speed is not related to the parameters, but the model size in RAM.
+
+I found 20 tokens/s and faster a usable speed to use an LLM, and looking at the graph you see what hardware you will need. CPUs are out of the question. Both RX 6600 and RTX 3060 Ti have 8GB of RAM. I got the RX 6600 for $130 and the RTX 3060 Ti for $200. To get the same tokens/s that I have with 8b models also for a 70b model I would need a RTX A6000 Ada with 48 GB of RAM for $6000. And even that is by far not enough for a 405b model. Yet the possible accuracy would be nice:
 
 ![accuracy](pic/accuracy_llms.png)
+
+Measurements done by Meta.
 
 ## History
 
