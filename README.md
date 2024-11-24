@@ -128,9 +128,13 @@ Measurements above are done by Meta.
 
 After some test runs with ollama in October 2024, reading documentation and the results of other people running tests it seems like there is a simple relationship for the token generation speed $T$ from the RAM bandwidth $B$ in GB/s and the model size $M$ in RAM in GB. I found an almost linear fit with a factor of 1.1, here simplified to 1:
 
-<img src="https://kreier.github.io/ml/pic/1x1.png" width="20%"><img src="https://kreier.github.io/ml/pic/token_generation.png" width="60%">
+<img src="https://kreier.github.io/ml/pic/1x1.png" width="20%" height="1px"><img src="https://kreier.github.io/ml/pic/token_generation.png" width="60%">
 
-The graph from the Apple Silicon above seems to be not linear above 400 GB/s. [Anandtech tested the memory bandwidth](https://www.anandtech.com/show/17024/apple-m1-max-performance-review/2) for the Ultra CPU and found that the CPU can't use all the memory bandwidth (M1 128bit wide, M2 Pro 256 bit wide, M4 Max 512 bit wide, M2 Ultra 1024 bit wide). Maybe the reason is that the 8 LPDDR5 128bit controller have to move the data across the chip to the GPU in some instances. Here is a die picture just from the M1 Max chip, see how much area is used just for the memory controllers:
+This approximated linear relation can be seen in the Apple Silicon graph in the last paragraph, but it seems to be not linear above 400 GB/s. My experiments show an almost linear relationship, if you convert token/s back to time per token:
+
+![time per token](https://kreier.github.io/ml/pic/time_per_token.png)
+
+What's with the M CPUs from Apple? [Anandtech tested the memory bandwidth](https://www.anandtech.com/show/17024/apple-m1-max-performance-review/2) for the Ultra CPU and found that the CPU can't use all the memory bandwidth (M1 128bit wide, M2 Pro 256 bit wide, M4 Max 512 bit wide, M2 Ultra 1024 bit wide). Maybe the reason is that the 8 LPDDR5 128bit controller have to move the data across the chip to the GPU in some instances. Here is a die picture just from the M1 Max chip, see how much area is used just for the memory controllers:
 
 <img src="https://kreier.github.io/ml/pic/1x1.png" width="20%"><img src="https://images.anandtech.com/doci/17019/M1MAX.jpg" width="60%">
 
@@ -149,15 +153,12 @@ Just reading the process and analyzing my findings this approach seems obvious. 
 - [Async/parallel speculative execution with llama.cpp](https://github.com/ggerganov/llama.cpp/discussions/6853), okuvshvnov, 2024/04/24
 - [SpecExec: Massively Parallel Speculative Decoding for Interactive LLM Inference on Consumer Devices](https://www.together.ai/blog/specexec), article on together.ai, 2024-06-18
 
-
-
-
 ## Lessons learned so far
 
-- 2023/03/05 Larger models are better, you need more RAM
-- 2024/07/10 Faster GPUs generate the tokens faster
-- 2024/07/20 You need newer GPUs. At least [Maxwell](https://en.wikipedia.org/wiki/Maxwell_(microarchitecture)) ([CUDA](https://en.wikipedia.org/wiki/CUDA) Compute Capability 5.0) for inference with ollama. You need at least [Volta](https://en.wikipedia.org/wiki/Volta_(microarchitecture)) (Cuda CC 7.0) to run the Triniton compiler if you build your own nanoGPT. The newer, the more expensive.
-- 2024/10/05 It's actually the memory speed. Faster GPUs in general also have faster memory access. Only for the first PP (promt processing) stage you need raw GPU power, after that in TG (token generation) or EV (evaluation) it is mainly RAM bandwidth.
+- 2023/03/05 Larger models are better, you need more RAM. More **expensive**.
+- 2024/07/10 Faster GPUs generate the tokens faster. Faster means more **expensive**.
+- 2024/07/20 You need newer GPUs. At least [Maxwell](https://en.wikipedia.org/wiki/Maxwell_(microarchitecture)) ([CUDA](https://en.wikipedia.org/wiki/CUDA) Compute Capability 5.0) for inference with ollama. You need at least [Volta](https://en.wikipedia.org/wiki/Volta_(microarchitecture)) (Cuda CC 7.0) to run the Triniton compiler if you build your own nanoGPT. The newer, the more **expensive**.
+- 2024/10/05 It's actually the memory speed. Faster GPUs in general also have faster memory access. Only for the first PP (promt processing) stage you need raw GPU power, after that in TG (token generation) or EV (evaluation) it is mainly RAM bandwidth. And again, faster RAM is more **expensive**.
 - 2024/11/10 Finally a reason to have more VRAM for the GPU and really fast memory. For smarphones: To use AI you need more memory. Flagships in Android had a lot of RAM compared to Apples offerings, but no convincing use case. With AI its capacity and speed! And in a way Apple was prepared for years with how the M1 was designed. Now all phones have 8 GB RAM.
 - 2024/11/25 Speculative execution could speed up things.
 
