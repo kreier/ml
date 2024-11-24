@@ -58,7 +58,7 @@ One reason for tensorflow can be seen in this graph regarding popularity on stac
 
 ![popularity tensorflow](pic/tensorflow_stack_overflow.png)
 
-More about the certificate [here on medium](https://medium.com/@harshit_tyagi/google-certified-tensorflow-developer-learning-plan-tips-faqs-my-journey-9f88016048e3). It was [introduced in March 2020](https://blog.tensorflow.org/2020/03/introducing-tensorflow-developer-certificate.html) but by 2024 it [no longer exists](https://www.tensorflow.org/certificate).
+More about the certificate [here on medium](https://medium.com/@harshit_tyagi/google-certified-tensorflow-developer-learning-plan-tips-faqs-my-journey-9f88016048e3). It was [introduced in March 2020](https://blog.tensorflow.org/2020/03/introducing-tensorflow-developer-certificate.html) but by 2024 it [no longer exists](https://www.tensorflow.org/certificate). The big hype of data scientists reflected in websites lite [towardsdatascience](https://towardsdatascience.com/) and [medium.com](https://medium.com/) is over. We have transformers and ChatGPT since 2022, that's the new hot sauce!
 
 ## 2022 - Teach ML in [Advanced Automation](https://github.com/ssis-aa) at SSIS in Unit 5
 
@@ -114,7 +114,7 @@ In early 2023 I ran a 8b model with a 4bit quantization on my MacBook Pro at SSI
 
 ![performance](pic/llm_cpu_gpu_tokens.png)
 
-Turns out that the token creation rate is inverse proportional to the size of the model! Or the time to create a token for the answer (TG) is proportional to the RAM speed. A large model might fit into your RAM or VRAM, but the larger the model, the slower an answer will be. The above graph has quantization 4 bit to fp16, yet the speed for TG is not related to the number of parameters or speed of the GPU, but the model size in RAM - at least for TG. Not a new insight, [on llama.cpp](https://github.com/ggerganov/llama.cpp/discussions/4167) there are conversations and graphs realated to this topic and Apple hardware. No wonder I get only 0.2 tokens/s for the larger 70b parameter if only using DDR3 ECC RAM
+Turns out that the token creation rate is inverse proportional to the size of the model! Or the time to create a token for the answer (TG) is proportional to the RAM speed. A large model might fit into your RAM or VRAM, but the larger the model, the slower an answer will be. The above graph has quantization 4 bit to fp16, yet the speed for TG is not related to the number of parameters or speed of the GPU, but the model size in RAM - at least for TG. Not a new insight, [on llama.cpp](https://github.com/ggerganov/llama.cpp/discussions/4167) there are conversations and graphs realated to this topic and Apple hardware. No wonder I get only 0.2 tokens/s for the larger 70b parameter if only using DDR3 ECC RAM. And that 4-bit quantizized models are almost as precise as the full fp16 ones was tested in a paper 2023-02-28 ([The case for 4-bit precision: k-bit Inference Scaling Laws](https://arxiv.org/pdf/2212.09720)). With a quarter the size you could fit a model with 4x the parameters in RAM, or get the same model to work 4x faster. Since RAM size and RAM speed are both expensive.
 
 ![PP and TG for Apple hardware](https://raw.githubusercontent.com/kreier/benchmark/refs/heads/main/llm/text_generation_vs_bandwidth_apple_silicon.png)
 
@@ -122,21 +122,45 @@ I found 20 tokens/s and faster a usable speed to use an LLM, and looking at the 
 
 ![accuracy](pic/accuracy_llms.png)
 
-Measurements done by Meta.
+Measurements above are done by Meta.
 
 ## Correlation Model Size and TG token generation
 
-After some test runs with ollama, reading documentation and the results of other people running tests it seems like there is a simple relationship for the token generation speed $T$ from the RAM bandwidth $B$ in GB/s and the model size $M$ in RAM in GB.
+After some test runs with ollama in October 2024, reading documentation and the results of other people running tests it seems like there is a simple relationship for the token generation speed $T$ from the RAM bandwidth $B$ in GB/s and the model size $M$ in RAM in GB. I found an almost linear fit with a factor of 1.1, here simplified to 1:
 
-$$$
-T = \frac{B}{M}
-$$$
+<img src="https://kreier.github.io/ml/pic/tokenb_generation.jpg" width="50%" align="center">
 
-The graph from the Apple Silicon above seems to be not linear above 400 GB/s. [Anandtech tested the memory bandwidth](https://www.anandtech.com/show/17024/apple-m1-max-performance-review/2) and found that the CPU can't use all the memory bandwidth (M1 128bit wide, M2 Pro 256 bit wide, M4 Max 512 bit wide, M2 Ultra 1024 bit wide) since the 8 LPDDR5 128bit controller have to move the data across the chip to the GPU. See here the 4 controller on the M1 Max chip:
+The graph from the Apple Silicon above seems to be not linear above 400 GB/s. [Anandtech tested the memory bandwidth](https://www.anandtech.com/show/17024/apple-m1-max-performance-review/2) for the Ultra CPU and found that the CPU can't use all the memory bandwidth (M1 128bit wide, M2 Pro 256 bit wide, M4 Max 512 bit wide, M2 Ultra 1024 bit wide). Maybe the reason is that the 8 LPDDR5 128bit controller have to move the data across the chip to the GPU in some instances. Here is a die picture just from the M1 Max chip, see how much area is used just for the memory controllers:
 
-![M1 MAX chip](https://images.anandtech.com/doci/17019/M1MAX.jpg)
+<img src="https://images.anandtech.com/doci/17019/M1MAX.jpg" width="60%" align="center">
 
 The two M1 Max chips that are connected with some 10000 traces on the 2.5D chip packaging interposer for 2.5 TB/s bandwidth. This should be enough for the "just" 0.8 TB/s memory bandwidth, but maybe it's not always as aligned as wanted, or a better driver would improve speed there. So that the GPU cores have their dedicated RAM segment to work on and little data has to be moved over the UltraFusion interface. [Anandtech wrote about](https://www.anandtech.com/show/17306/apple-announces-m1-ultra-combining-two-m1-maxes-for-even-more-performance) this technology in 2022. [Another test in 2023](https://macperformanceguide.com/MacPro2023-MemoryBandwidth.html) only saw 240 GB/s for the M2 Ultra - limit for the CPU?
+
+And while news to me, this very limit of the response time in LLMs is long known in the industry. And there are some novel ideas how to circumvent the "latency bottleneck"
+
+## Faster inference with speculative execution
+
+Just reading the process and analyzing my findings this approach seems obvious. For one token the entire model has to be loaded from the VRAM into the cache of the GPU and processed. But most of the time the GPU is just waiting for new data to arrive. If we had a good guess for the next token, we could process the extended promt at the same time with no measureble increased time to generate a token, but we would have 2 tokens generated! Here are some papers about this:
+
+- [Accelerating Large Language Model Decoding with Speculative Sampling](https://arxiv.org/pdf/2302.01318), paper by DeepMind, 2023/02/02
+- [Cascade Speculative Drafting for Even Faster LLM Inference](https://arxiv.org/pdf/2312.11462), [Ziyi Chen](https://openreview.net/profile?id=~Ziyi_Chen8) at University of Illinois, 2024/02/27
+- [Speculative Decoding — Make LLM Inference Faster](https://medium.com/ai-science/speculative-decoding-make-llm-inference-faster-c004501af120) Improve LLM inference speed by 2–3X without degrading any accuracy, Luv Bansal on medium.com, 2024/04/08
+- [Beyond the Speculative Game: A Survey of Speculative Execution in Large Language Models](https://arxiv.org/pdf/2404.14897), *Beijing Institute of Technology*, China, 2024/04/23
+- [Async/parallel speculative execution with llama.cpp](https://github.com/ggerganov/llama.cpp/discussions/6853), okuvshvnov, 2024/04/24
+- [SpecExec: Massively Parallel Speculative Decoding for Interactive LLM Inference on Consumer Devices](https://www.together.ai/blog/specexec), article on togehter.ai, 2024-06-18
+
+
+
+
+## Lessons learned so far
+
+- 2023/03/05 Larger models are better, you need more RAM
+- 2024/07/10 Faster GPUs generate the tokens faster
+- 2024/07/20 You need newer GPUs. At least [Maxwell](https://en.wikipedia.org/wiki/Maxwell_(microarchitecture)) ([CUDA](https://en.wikipedia.org/wiki/CUDA) Compute Capability 5.0) for inference with ollama. You need at least [Volta](https://en.wikipedia.org/wiki/Volta_(microarchitecture)) (Cuda CC 7.0) to run the Triniton compiler if you build your own nanoGPT. The newer, the more expensive.
+- 2024/10/05 It's actually the memory speed. Faster GPUs in general also have faster memory access. Only for the first PP (promt processing) stage you need raw GPU power, after that in TG (token generation) or EV (evaluation) it is mainly RAM bandwidth.
+- 2024/11/10 Finally a reason to have more VRAM for the GPU and really fast memory. For smarphones: To use AI you need more memory. Flagships in Android had a lot of RAM compared to Apples offerings, but no convincing use case. With AI its capacity and speed! And in a way Apple was prepared for years with how the M1 was designed. Now all phones have 8 GB RAM.
+- 2024/11/25 Speculative execution could speed up things.
+
 
 ## History
 
