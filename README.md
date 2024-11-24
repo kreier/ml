@@ -110,7 +110,7 @@ My AMD RX 470, RX 580 and RX 6600 are too old to be [supported by ROCm](https://
 
 ## Inference on local hardware
 
-In early 2023 I ran a 8b model with a 4bit quantization on my MacBook Pro at SSIS. It was impressive to see what's possible with 8GB of RAM on a laptop! It became obvious that you need more RAM for larger models, so I build a new workstation with 128 GB RAM and a 18-core E5-2696 v3 CPU in early 2024. Well, it became another learning experience:
+In early 2023 I ran a 8b paramter model with a 4bit quantization on my MacBook Pro at SSIS. It was impressive to see what's possible with just 8GB of RAM on a laptop! It became obvious that you need more RAM for larger models, so I build a new workstation with 128 GB RAM and a 18-core E5-2696 v3 CPU in early 2024. Well, it became another learning experience:
 
 ![performance](pic/llm_cpu_gpu_tokens.png)
 
@@ -128,15 +128,15 @@ Measurements above are done by Meta.
 
 After some test runs with ollama in October 2024, reading documentation and the results of other people running tests it seems like there is a simple relationship for the token generation speed $T$ from the RAM bandwidth $B$ in GB/s and the model size $M$ in RAM in GB. I found an almost linear fit with a factor of 1.1, here simplified to 1:
 
-<img src="https://kreier.github.io/ml/pic/tokenb_generation.jpg" width="50%" align="center">
+<img src="https://kreier.github.io/ml/pic/1x1.png" width="20%"><img src="https://kreier.github.io/ml/pic/token_generation.png" width="60%">
 
 The graph from the Apple Silicon above seems to be not linear above 400 GB/s. [Anandtech tested the memory bandwidth](https://www.anandtech.com/show/17024/apple-m1-max-performance-review/2) for the Ultra CPU and found that the CPU can't use all the memory bandwidth (M1 128bit wide, M2 Pro 256 bit wide, M4 Max 512 bit wide, M2 Ultra 1024 bit wide). Maybe the reason is that the 8 LPDDR5 128bit controller have to move the data across the chip to the GPU in some instances. Here is a die picture just from the M1 Max chip, see how much area is used just for the memory controllers:
 
-<img src="https://images.anandtech.com/doci/17019/M1MAX.jpg" width="60%" align="center">
+<img src="https://kreier.github.io/ml/pic/1x1.png" width="20%"><img src="https://images.anandtech.com/doci/17019/M1MAX.jpg" width="60%">
 
 The two M1 Max chips that are connected with some 10000 traces on the 2.5D chip packaging interposer for 2.5 TB/s bandwidth. This should be enough for the "just" 0.8 TB/s memory bandwidth, but maybe it's not always as aligned as wanted, or a better driver would improve speed there. So that the GPU cores have their dedicated RAM segment to work on and little data has to be moved over the UltraFusion interface. [Anandtech wrote about](https://www.anandtech.com/show/17306/apple-announces-m1-ultra-combining-two-m1-maxes-for-even-more-performance) this technology in 2022. [Another test in 2023](https://macperformanceguide.com/MacPro2023-MemoryBandwidth.html) only saw 240 GB/s for the M2 Ultra - limit for the CPU?
 
-And while news to me, this very limit of the response time in LLMs is long known in the industry. And there are some novel ideas how to circumvent the "latency bottleneck"
+And while news to me, this very limit of the response time in LLMs is long known in the industry. And there are some novel ideas how to circumvent the "latency bottleneck".
 
 ## Faster inference with speculative execution
 
@@ -147,7 +147,7 @@ Just reading the process and analyzing my findings this approach seems obvious. 
 - [Speculative Decoding — Make LLM Inference Faster](https://medium.com/ai-science/speculative-decoding-make-llm-inference-faster-c004501af120) Improve LLM inference speed by 2–3X without degrading any accuracy, Luv Bansal on medium.com, 2024/04/08
 - [Beyond the Speculative Game: A Survey of Speculative Execution in Large Language Models](https://arxiv.org/pdf/2404.14897), *Beijing Institute of Technology*, China, 2024/04/23
 - [Async/parallel speculative execution with llama.cpp](https://github.com/ggerganov/llama.cpp/discussions/6853), okuvshvnov, 2024/04/24
-- [SpecExec: Massively Parallel Speculative Decoding for Interactive LLM Inference on Consumer Devices](https://www.together.ai/blog/specexec), article on togehter.ai, 2024-06-18
+- [SpecExec: Massively Parallel Speculative Decoding for Interactive LLM Inference on Consumer Devices](https://www.together.ai/blog/specexec), article on together.ai, 2024-06-18
 
 
 
