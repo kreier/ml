@@ -21,7 +21,8 @@ Early 2020 some supply chains delay orders, but we finally have the hardware. No
 <!--
 ![Facemesh example](https://github.com/tensorflow/tfjs-models/blob/master/facemesh/demo.gif?raw=true)
 -->
-![Facemesh example](https://github.com/kreier/ml/blob/main/pic/facemesh.gif?raw=true)
+
+<img src="https://kreier.github.io/ml/pic/1x1.png" width="20%"><img src="https://github.com/kreier/ml/blob/main/pic/facemesh.gif?raw=true" width="60%">
 
 ### Schedule for 2020
 
@@ -54,11 +55,11 @@ Some of these libraries are Pandas (data manipulation and analysis), Numpy (supp
 
 - [Coursera TensorFlow in Practice](https://www.coursera.org/professional-certificates/tensorflow-in-practice#courses)
 
-One reason for tensorflow can be seen in this graph regarding popularity on stack overflow:
+One reason for tensorflow can be seen in this graph regarding popularity on [stackoverflow](https://stackoverflow.co/):
 
-![popularity tensorflow](pic/tensorflow_stack_overflow.png)
+<img src="https://kreier.github.io/ml/pic/1x1.png" width="20%"><img src="pic/tensorflow_stack_overflow.png" width="60%">
 
-More about the certificate [here on medium](https://medium.com/@harshit_tyagi/google-certified-tensorflow-developer-learning-plan-tips-faqs-my-journey-9f88016048e3). It was [introduced in March 2020](https://blog.tensorflow.org/2020/03/introducing-tensorflow-developer-certificate.html) but by 2024 it [no longer exists](https://www.tensorflow.org/certificate). The big hype of data scientists reflected in websites lite [towardsdatascience](https://towardsdatascience.com/) and [medium.com](https://medium.com/) is over. We have transformers and ChatGPT since 2022, that's the new hot sauce! But in the meantime I learned Python, Pandas, NumPy, MatPlotLib, Deep Learning, ML and Neural Networks regardless. With higher level libraries available now very few actually code directly in tensorflow.
+More about the tensorflow certificate [here on medium](https://medium.com/@harshit_tyagi/google-certified-tensorflow-developer-learning-plan-tips-faqs-my-journey-9f88016048e3). It was [launched in March 2020](https://blog.tensorflow.org/2020/03/introducing-tensorflow-developer-certificate.html) but ceased to exist [by 2024](https://www.tensorflow.org/certificate). The data science hype, once reflected on platforms like [towardsdatascience](https://towardsdatascience.com/) and [medium.com](https://medium.com/) has subsided. The focus has shifted to innovations like transformers and ChatGPT, which have been the "hot new thing" since 2022. Nevertheless, I took the opportunity to learn Python, Pandas, NumPy, Matplotlib, Deep Learning, Machine Learning, and Neural Networks along the way. NumPy and Pandas have now surpassed tensorflow and pytorch on [stackoverflow](https://survey.stackoverflow.co/2024/).
 
 ## 2022 - Teach ML in [Advanced Automation](https://github.com/ssis-aa) at SSIS in Unit 5
 
@@ -136,7 +137,7 @@ This approximated linear relation can be seen in the Apple Silicon graph in the 
 
 What's with the M CPUs from Apple? [Anandtech tested the memory bandwidth](https://www.anandtech.com/show/17024/apple-m1-max-performance-review/2) for the Ultra CPU and found that the CPU can't use all the memory bandwidth (M1 128bit wide, M2 Pro 256 bit wide, M4 Max 512 bit wide, M2 Ultra 1024 bit wide). Maybe the reason is that the 8 LPDDR5 128bit controller have to move the data across the chip to the GPU in some instances. Here is a die picture just from the M1 Max chip, see how much area is used just for the memory controllers:
 
-<img src="https://kreier.github.io/ml/pic/1x1.png" width="20%"><img src="https://images.anandtech.com/doci/17019/M1MAX.jpg" width="60%">
+<img src="https://kreier.github.io/ml/pic/1x1.png" width="25%"><img src="https://images.anandtech.com/doci/17019/M1MAX.jpg" width="50%">
 
 The two M1 Max chips that are connected with some 10000 traces on the 2.5D chip packaging interposer for 2.5 TB/s bandwidth. This should be enough for the "just" 0.8 TB/s memory bandwidth, but maybe it's not always as aligned as wanted, or a better driver would improve speed there. So that the GPU cores have their dedicated RAM segment to work on and little data has to be moved over the UltraFusion interface. [Anandtech wrote about](https://www.anandtech.com/show/17306/apple-announces-m1-ultra-combining-two-m1-maxes-for-even-more-performance) this technology in 2022. [Another test in 2023](https://macperformanceguide.com/MacPro2023-MemoryBandwidth.html) only saw 240 GB/s for the M2 Ultra - limit for the CPU?
 
