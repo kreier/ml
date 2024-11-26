@@ -10,7 +10,7 @@ Posenet runs on TensorFlow.lite in a browser on WebGL even on a smartphone. We t
 
 ![Posenet the park](TensorFlow.js/posenet/2019-03_thepark.jpg)
 
-During 2019 NVIDIA announced the [Jetson Nano](https://en.wikipedia.org/wiki/Nvidia_Jetson) developer kit and with students from AISVN we try to win one in a competition. Eventually we order a package.
+During 2019 NVIDIA announced the [Jetson Nano](https://en.wikipedia.org/wiki/Nvidia_Jetson) developer kit and with students from AISVN we tried to win one in a competition. Eventually we ordered a package.
 
 ![Jetson Nano car](https://kreier.github.io/jetson-car/pic/2019_jetson_car.jpg)
 
@@ -58,7 +58,7 @@ One reason for tensorflow can be seen in this graph regarding popularity on stac
 
 ![popularity tensorflow](pic/tensorflow_stack_overflow.png)
 
-More about the certificate [here on medium](https://medium.com/@harshit_tyagi/google-certified-tensorflow-developer-learning-plan-tips-faqs-my-journey-9f88016048e3). It was [introduced in March 2020](https://blog.tensorflow.org/2020/03/introducing-tensorflow-developer-certificate.html) but by 2024 it [no longer exists](https://www.tensorflow.org/certificate). The big hype of data scientists reflected in websites lite [towardsdatascience](https://towardsdatascience.com/) and [medium.com](https://medium.com/) is over. We have transformers and ChatGPT since 2022, that's the new hot sauce!
+More about the certificate [here on medium](https://medium.com/@harshit_tyagi/google-certified-tensorflow-developer-learning-plan-tips-faqs-my-journey-9f88016048e3). It was [introduced in March 2020](https://blog.tensorflow.org/2020/03/introducing-tensorflow-developer-certificate.html) but by 2024 it [no longer exists](https://www.tensorflow.org/certificate). The big hype of data scientists reflected in websites lite [towardsdatascience](https://towardsdatascience.com/) and [medium.com](https://medium.com/) is over. We have transformers and ChatGPT since 2022, that's the new hot sauce! But in the meantime I learned Python, Pandas, NumPy, MatPlotLib, Deep Learning, ML and Neural Networks regardless. With higher level libraries available now very few actually code directly in tensorflow.
 
 ## 2022 - Teach ML in [Advanced Automation](https://github.com/ssis-aa) at SSIS in Unit 5
 
@@ -76,7 +76,7 @@ If you think about possible learning experiences, we tried a few ones with our s
 
 ## 2024 - start with LLMs
 
-Andrej Karpathy offers a step-py-step guide to build your own Generative Pre-trained Transformer (GPT) starting with 1,000,000 characters from Shakespeare that you can train on your own GPU. Well, at least if it supports CUDA >7.0, otherwise the [triton compiler](https://github.com/triton-lang/triton) throws an error (like on my slightly older GTX 960):
+Andrej Karpathy offers a step-by-step guide to build your own Generative Pre-trained Transformer (GPT) starting with 1,000,000 characters from Shakespeare that you can train on your own GPU. Well, at least if it supports CUDA >7.0, otherwise the [triton compiler](https://github.com/triton-lang/triton) throws an error (like on my slightly older GTX 960):
 
 ``` sh
 torch._dynamo.exc.BackendCompilerFailed: backend='inductor' raised:
@@ -98,7 +98,7 @@ Let's see what I have and what CUDA Compute Capabilities (CC) these support:
 | RTX3060 Ti   |  4864 | 8.6 | i7-8700     | Ampere (2020)  |    8 |
 | RTX3070 Ti   |  6144 | 8.6 | i3-10100    | Ampere (2020)  |    8 |
 
-Only __two__ of 8 are supported by the Triton GPU compiler. How about a newer GPU? At least I can use the T4 in Google's collaboratory for free. The training taikes one hour. And you get two hours for free. Ollama only needs CUDA Compute Capability 5.0 and can therefore run on 5 of my graphic cards. Plus the RX 6600 with ROCm and a hack.
+Only __two__ of 8 are supported by the Triton GPU compiler. How about a newer GPU? At least I can use the T4 in Google's colaboratory for free. The training takes one hour. And you get two hours for free. Ollama only needs CUDA Compute Capability 5.0 and can therefore run on 5 of my graphic cards. Plus the RX 6600 with ROCm and a hack.
 
 ### Triton Compatibility (supported hardware):
 
@@ -106,19 +106,19 @@ Only __two__ of 8 are supported by the Triton GPU compiler. How about a newer GP
 - AMD GPUs (ROCm 5.2+)
 - Under development: CPUs
 
-My AMD RX 470, RX 580 and RX 6600 are too old to be [supported by ROCm](https://rocm.docs.amd.com/en/latest/compatibility/compatibility-matrix.html), even though the 6600 already uses [RNDA2](https://en.wikipedia.org/wiki/RDNA_2). The RX 6600 can be used if the llvm target is overwritten to be gfx1030 instead of [gfx1032](https://rocm.docs.amd.com/projects/install-on-windows/en/latest/reference/system-requirements.html). The ROCm installation needs 30 GB! In this regard it seems Nvidia is ahead of the game for some time now with their proprietary  [CUDA since 2007](https://en.wikipedia.org/wiki/CUDA). Support for the first Tesla GPUs with Compute Capability 1.1 was only dropped with CUDA SDK 7.0 in 2016. For the current CUDA SDK 12.0 (since 2022) a CC of 5.0 (Maxwell and newer since 2014) is required. That's true [for ollama](https://github.com/ollama/ollama/blob/main/docs/gpu.md), too. In 2024 that's 10 year old hardware.
+My AMD RX 470, RX 580 and RX 6600 are too old to be [supported by ROCm](https://rocm.docs.amd.com/en/latest/compatibility/compatibility-matrix.html), even though the 6600 already uses [RNDA2](https://en.wikipedia.org/wiki/RDNA_2). The RX 6600 can be used if the llvm target is overwritten to be gfx1030 instead of [gfx1032](https://rocm.docs.amd.com/projects/install-on-windows/en/latest/reference/system-requirements.html). The ROCm installation needs 30 GB! In this regard it seems Nvidia has been ahead of the game for some time now with their proprietary  [CUDA since 2007](https://en.wikipedia.org/wiki/CUDA). Support for the first Tesla GPUs with Compute Capability 1.1 was only dropped with CUDA SDK 7.0 in 2016. For the current CUDA SDK 12.0 (since 2022) a CC of 5.0 (Maxwell and newer since 2014) is required. That's true [for ollama](https://github.com/ollama/ollama/blob/main/docs/gpu.md), too. In 2024 that's 10 year old hardware.
 
 ## Inference on local hardware
 
-In early 2023 I ran a 8b paramter model with a 4bit quantization on my MacBook Pro at SSIS. It was impressive to see what's possible with just 8GB of RAM on a laptop! It became obvious that you need more RAM for larger models, so I build a new workstation with 128 GB RAM and a 18-core E5-2696 v3 CPU in early 2024. Well, it became another learning experience:
+In early 2023 I ran a 8b parameter model with a 4 bit quantization on my MacBook Pro at SSIS. It was impressive to see what's possible with just 8GB of RAM on a laptop! It became obvious that you need more RAM for larger models, so I built a new workstation with 128 GB RAM and a 18-core E5-2696 v3 CPU in early 2024. Well, it became another learning experience:
 
 ![performance](pic/llm_cpu_gpu_tokens.png)
 
-Turns out that the token creation rate is inverse proportional to the size of the model! Or the time to create a token for the answer (TG) is proportional to the RAM speed. A large model might fit into your RAM or VRAM, but the larger the model, the slower an answer will be. The above graph has quantization 4 bit to fp16, yet the speed for TG is not related to the number of parameters or speed of the GPU, but the model size in RAM - at least for TG. Not a new insight, [on llama.cpp](https://github.com/ggerganov/llama.cpp/discussions/4167) there are conversations and graphs realated to this topic and Apple hardware. No wonder I get only 0.2 tokens/s for the larger 70b parameter if only using DDR3 ECC RAM. And that 4-bit quantizized models are almost as precise as the full fp16 ones was tested in a paper 2023-02-28 ([The case for 4-bit precision: k-bit Inference Scaling Laws](https://arxiv.org/pdf/2212.09720)). With a quarter the size you could fit a model with 4x the parameters in RAM, or get the same model to work 4x faster. Since RAM size and RAM speed are both expensive.
+Turns out that the token creation rate is inversely proportional to the size of the model! Or the time to create a token for the answer (TG) is proportional to the RAM speed. A large model might fit into your RAM or VRAM, but the larger the model, the slower an answer will be. The above graph has quantization int4 to fp16, yet the speed for TG is not related to the number of parameters or speed of the GPU, but the model size in RAM - at least for TG. Not a new insight, [on llama.cpp](https://github.com/ggerganov/llama.cpp/discussions/4167) there are conversations and graphs related to this topic and Apple hardware. No wonder I get only 0.2 tokens/s for the larger 70b parameter if only using DDR3 ECC RAM. And that 4-bit quantized models are almost as precise as the full fp16 ones was tested in a paper 2023-02-28 ([The case for 4-bit precision: k-bit Inference Scaling Laws](https://arxiv.org/pdf/2212.09720)). With a quarter the size you could fit a model with 4x the parameters in RAM, or get the same model to work 4x faster. Since RAM size and RAM speed are both expensive.
 
 ![PP and TG for Apple hardware](https://raw.githubusercontent.com/kreier/benchmark/refs/heads/main/llm/text_generation_vs_bandwidth_apple_silicon.png)
 
-I found 20 tokens/s and faster a usable speed to use an LLM, and looking at the graph you see what hardware you will need. CPUs are out of the question. Both RX 6600 and RTX 3060 Ti have 8GB of RAM. I got the RX 6600 for $130 and the RTX 3060 Ti for $200. To get the same tokens/s that I have with 8b models also for a 70b model I would need a RTX A6000 Ada with 48 GB of RAM for $6000. And even that is by far not enough for a 405b model. Yet the possible accuracy would be nice:
+I found 20 tokens/s and faster to be a usable speed to use an LLM, and looking at the graph you see what hardware you will need. CPUs are out of the question. Both RX 6600 and RTX 3060 Ti have 8GB of RAM. I got the RX 6600 for $130 and the RTX 3060 Ti for $200. To get the same tokens/s that I have with 8b models, but for a 70b model I would need a RTX 6000 Ada with 48 GB of RAM for $6000. And even that is by far not enough for a 405b model. Yet the possible accuracy would be nice:
 
 ![accuracy](pic/accuracy_llms.png)
 
@@ -140,11 +140,11 @@ What's with the M CPUs from Apple? [Anandtech tested the memory bandwidth](https
 
 The two M1 Max chips that are connected with some 10000 traces on the 2.5D chip packaging interposer for 2.5 TB/s bandwidth. This should be enough for the "just" 0.8 TB/s memory bandwidth, but maybe it's not always as aligned as wanted, or a better driver would improve speed there. So that the GPU cores have their dedicated RAM segment to work on and little data has to be moved over the UltraFusion interface. [Anandtech wrote about](https://www.anandtech.com/show/17306/apple-announces-m1-ultra-combining-two-m1-maxes-for-even-more-performance) this technology in 2022. [Another test in 2023](https://macperformanceguide.com/MacPro2023-MemoryBandwidth.html) only saw 240 GB/s for the M2 Ultra - limit for the CPU?
 
-And while news to me, this very limit of the response time in LLMs is long known in the industry. And there are some novel ideas how to circumvent the "latency bottleneck".
+And while news to me, this very limit of the response time in LLMs is long known in the industry. And there are some novel ideas on how to circumvent the "latency bottleneck".
 
 ## Faster inference with speculative execution
 
-Just reading the process and analyzing my findings this approach seems obvious. For one token the entire model has to be loaded from the VRAM into the cache of the GPU and processed. But most of the time the GPU is just waiting for new data to arrive. If we had a good guess for the next token, we could process the extended promt at the same time with no measureble increased time to generate a token, but we would have 2 tokens generated! Here are some papers about this:
+Just reading the process and analyzing my findings this approach seems obvious. For one token the entire model has to be loaded from the VRAM into the cache of the GPU and processed. But most of the time the GPU is just waiting for new data to arrive. If we had a good guess for the next token, we could process the extended prompt at the same time with no measurable increased time to generate a token, but we would have 2 tokens generated! Here are some papers about this:
 
 - [Accelerating Large Language Model Decoding with Speculative Sampling](https://arxiv.org/pdf/2302.01318), paper by DeepMind, 2023/02/02
 - [Cascade Speculative Drafting for Even Faster LLM Inference](https://arxiv.org/pdf/2312.11462), [Ziyi Chen](https://openreview.net/profile?id=~Ziyi_Chen8) at University of Illinois, 2024/02/27
@@ -153,19 +153,25 @@ Just reading the process and analyzing my findings this approach seems obvious. 
 - [Async/parallel speculative execution with llama.cpp](https://github.com/ggerganov/llama.cpp/discussions/6853), okuvshvnov, 2024/04/24
 - [SpecExec: Massively Parallel Speculative Decoding for Interactive LLM Inference on Consumer Devices](https://www.together.ai/blog/specexec), article on together.ai, 2024-06-18
 
+The above papers indicate that 2x or even 3x would be possible. I think you need very good conditions to achive that result - but from a probablility standpoint. One factor is that the speculation of further token takes up a considerable amount of time, and you want it to be fast (and small). On the other hand you want to have a high success rate. I played around with some parameters in a [Google Sheet](https://docs.google.com/spreadsheets/d/1SNf6ulzuzFyCcL6kMPn3qZZKFgRWvbiTxRUIxrRnBsk/edit?usp=sharing) and set the success rate to 90% and made the speculative model 20x faster/smaller. In this case the large model produces a token every 100ms, and the speculative model every 5 ms. Here is the result:
+
+<img src="https://kreier.github.io/ml/pic/1x1.png" width="15%"><img src="https://kreier.github.io/ml/pic/speculative_sampling.png" width="70%">
+
+I can't get to 2x with these values. I would need a much smaller model that is 50x smaller/faster than the large model to hit 2.37x.
+
 ## Lessons learned so far
 
 - 2023/03/05 Larger models are better, you need more RAM. More **expensive**.
 - 2024/07/10 Faster GPUs generate the tokens faster. Faster means more **expensive**.
 - 2024/07/20 You need newer GPUs. At least [Maxwell](https://en.wikipedia.org/wiki/Maxwell_(microarchitecture)) ([CUDA](https://en.wikipedia.org/wiki/CUDA) Compute Capability 5.0) for inference with ollama. You need at least [Volta](https://en.wikipedia.org/wiki/Volta_(microarchitecture)) (Cuda CC 7.0) to run the Triniton compiler if you build your own nanoGPT. The newer, the more **expensive**.
-- 2024/10/05 It's actually the memory speed. Faster GPUs in general also have faster memory access. Only for the first PP (promt processing) stage you need raw GPU power, after that in TG (token generation) or EV (evaluation) it is mainly RAM bandwidth. And again, faster RAM is more **expensive**.
-- 2024/11/10 Finally a reason to have more VRAM for the GPU and really fast memory. For smarphones: To use AI you need more memory. Flagships in Android had a lot of RAM compared to Apples offerings, but no convincing use case. With AI its capacity and speed! And in a way Apple was prepared for years with how the M1 was designed. Now all phones have 8 GB RAM.
+- 2024/10/05 It's actually the memory speed. Faster GPUs in general also have faster memory access. Only for the first PP (prompt processing) stage you need raw GPU power, after that in TG (token generation) or EV (evaluation) it is mainly RAM bandwidth. And again, faster RAM is more **expensive**.
+- 2024/11/10 Finally a reason to have more VRAM for the GPU and really fast memory. For smartphones: To use AI you need more memory. Flagships in Android had a lot of RAM compared to Apples offerings, but no convincing use case. With AI its capacity and speed! And in a way Apple was prepared for years with how the M1 was designed. Now all phones have 8 GB RAM.
 - 2024/11/25 Speculative execution could speed up things.
 
 
 ## History
 
-- __October 2018__ Successful installed darknet on ubuntu, object detection works for stills. Don't have a webcam, video does not work yet.
+- __October 2018__ Successful installed darknet on ubuntu, object detection works for stills. Don't have a webcam, and the video does not work yet.
 - __December 2018__ TensorFlow.lite in a browser on my iPhone 7 runs at 6 fps, demonstrated in Seoul
 - __March 2019__ posenet runs in the browser with new RX470 with 43 fps
 - __December 2019__ On [hackster.io](https://hackster.io) starts a new competition [AI at the Edge Challenge](https://www.hackster.io/contests/NVIDIA) where you can win a Jetson Nano. I apply and eventually just buy one from [arrow](https://www.arrow.com/)
