@@ -139,7 +139,16 @@ What's with the M CPUs from Apple? [Anandtech tested the memory bandwidth](https
 
 <img src="https://kreier.github.io/ml/pic/1x1.png" width="25%"><img src="https://images.anandtech.com/doci/17019/M1MAX.jpg" width="50%">
 
-The two M1 Max chips that are connected with some 10000 traces on the 2.5D chip packaging interposer for 2.5 TB/s bandwidth. This should be enough for the "just" 0.8 TB/s memory bandwidth, but maybe it's not always as aligned as wanted, or a better driver would improve speed there. So that the GPU cores have their dedicated RAM segment to work on and little data has to be moved over the UltraFusion interface. [Anandtech wrote about](https://www.anandtech.com/show/17306/apple-announces-m1-ultra-combining-two-m1-maxes-for-even-more-performance) this technology in 2022. [Another test in 2023](https://macperformanceguide.com/MacPro2023-MemoryBandwidth.html) only saw 240 GB/s for the M2 Ultra - limit for the CPU?
+The two M1 Max chips that are connected with some 10000 traces on the 2.5D chip packaging interposer for 2.5 TB/s bandwidth. This should be enough for the "just" 0.8 TB/s memory bandwidth, but maybe it's not always as aligned as wanted, or a better driver would improve speed there. So that the GPU cores have their dedicated RAM segment to work on and little data has to be moved over the UltraFusion interface. [Anandtech wrote about](https://www.anandtech.com/show/17306/apple-announces-m1-ultra-combining-two-m1-maxes-for-even-more-performance) this technology in 2022. [Another test in 2023](https://macperformanceguide.com/MacPro2023-MemoryBandwidth.html) only saw 240 GB/s for the M2 Ultra - limit for the CPU? Anyway, here my findings for memory speed in a table:
+
+| CPU        | Memory             | GByte/s | x | GPU           | Memory             | GByte/s |
+|------------|--------------------|---------|---|---------------|--------------------|---------|
+| E3-1226 v3 | DDR3 1333          |      22 |   | [Jetson Nano](https://www.techpowerup.com/gpu-specs/jetson-nano.c3643)   | 4GB LPDDR4 64bit   |      25 |
+| i7-8700    | DDR4 2666          |      35 |   | [Quadro M1000M](https://www.techpowerup.com/gpu-specs/quadro-m1000m.c2739) | 2GB GDDR5 128bit   |      80 |
+| i7-13700T  | DDR4 3200 128bit   |      43 |   | [P106-100](https://www.techpowerup.com/gpu-specs/p106-100.c2980)      | 6GB GDDR5 192bit   |     192 |
+| Apple M1   | LPDDR4X 4266       |      66 |   | [RTX 3070 Ti](https://www.techpowerup.com/gpu-specs/geforce-rtx-3070-ti.c3675)   | 8 GB GDDR6X 256bit |     608 |
+| M3 Max     | LPDDR5 6400 512bit |     409 |   | [P100](https://www.techpowerup.com/gpu-specs/tesla-p100-pcie-16-gb.c2888)          | 16 GB HBM2 4096bit |     732 |
+| M4 Max     | LPDDR5X 8533       |     546 |   | [RTX 6000 Ada](https://www.techpowerup.com/gpu-specs/rtx-6000-ada-generation.c3933)  | 48 GB GDDR6 384bit |     960 |
 
 And while news to me, this very limit of the response time in LLMs is long known in the industry. And there are some novel ideas on how to circumvent the "latency bottleneck".
 
