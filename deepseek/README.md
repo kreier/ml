@@ -21,11 +21,15 @@ The [ollama website](https://ollama.com/library/deepseek-r1:1.5b) states that th
 
 ### 7b model based on qwen 7B
 
+The website states that it requres 4.7 GB, running on a GPU it uses 6.0 GB. For the 29 layers are 5.6 GiB required. With 7.62 B parameters we get 83 tokens/s.
+
 ### 8b model based on llama 8B
+
+The website states that it requres 4.9 GB, running on a GPU it uses 5.8 GB. For the 33 layers are 5.4 GiB required. With 8.03 B parameters we get 79 tokens/s.
 
 ### 14b model based on qwen 14B
 
-The website staes 9.0 GB for the Q4_K_M model, while `ollama ps` states 10 to 16 GB. Splitting up less increases performance.
+The website staes 9.0 GB for the Q4_K_M model, while `ollama ps` states 10 to 16 GB. Splitting up less increases performance. The model has 49 layers.
 
 | `ollama ps` | memory_required | token/s | offload layers | CPU/GPU | GB GPUs |
 |:-----------:|:---------------:|--------:|:--------------:|---------|---------|
@@ -36,7 +40,7 @@ The website staes 9.0 GB for the Q4_K_M model, while `ollama ps` states 10 to 16
 
 ### 32b model based on qwen 32B
 
-The website staes 20 GB for the Q4_K_M model, while `ollama ps` states 22 to 26 GB. It currently does not fit into 4 GPUs with combined 26 GByte VRAM.
+The website staes 20 GB for the Q4_K_M model, while `ollama ps` states 22 to 26 GB. It currently does not fit into 4 GPUs with combined 26 GByte VRAM. The model has 65 layers.
 
 | `ollama ps` | memory_required | token/s | offload layers | CPU/GPU | GB GPUs |
 |:-----------:|:---------------:|--------:|:--------------:|---------|---------|
@@ -45,6 +49,8 @@ The website staes 20 GB for the Q4_K_M model, while `ollama ps` states 22 to 26 
 |       26 GB |        25.1 GiB |    5.11 | 19/15/15/15    | 2/98    | 8/6/6/6 |
 
 ### 70b model based on llama3 70b
+
+To be tested on the E5-2696v3.
 
 ### 671b model
 
