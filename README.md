@@ -87,17 +87,19 @@ as the backend. Triton only supports devices of CUDA Capability >= 7.0, but your
 
 Let's see what I have and what CUDA Compute Capabilities (CC) these support:
 
-| GPU name     | Cores |  CC |      at     | architecture | RAM GB |
-|--------------|------:|:------------------:|:-----------:|--------------|-------:|
-| Quadro FX580 |    32 | 1.1 | hp Z600     | [Tesla](https://en.wikipedia.org/wiki/Tesla_(microarchitecture)) (2006) |    0.5 |
-| GTX 650      |   384 | 3.0 | E3-1226 v3  | [Kepler](https://en.wikipedia.org/wiki/Kepler_(microarchitecture)) (2012) |     1 |
-| GT750M       |   384 | 3.0 | MBPr15 2014 | Kepler (2012) |   0.5 |
-| M1000M       |   512 | 5.0 | Zbook 15 G3 | Kepler (2012) |     1 |
-| GTX960       |  1024 | 5.2 | E5-2696 v3  | Maxwell (2014) |    2 |
-| Jetson Nano  |   128 | 5.3 |             | [Maxwell](https://en.wikipedia.org/wiki/Maxwell_(microarchitecture)) (2014) |    4 |
-| T4           |  2560 | 7.5 | Google Colab | Turing (2018) |   16 |
-| RTX3060 Ti   |  4864 | 8.6 | i7-8700     | Ampere (2020)  |    8 |
-| RTX3070 Ti   |  6144 | 8.6 | i3-10100    | Ampere (2020)  |    8 |
+| GPU name      | Cores |  CC |      at     | architecture | RAM GB |
+|---------------|------:|:------------------:|:-----------:|--------------|-------:|
+| Quadro FX 580 |    32 | 1.1 | hp Z600     | [Tesla](https://en.wikipedia.org/wiki/Tesla_(microarchitecture)) (2006) |    0.5 |
+| GTX 650       |   384 | 3.0 | E3-1226 v3  | [Kepler](https://en.wikipedia.org/wiki/Kepler_(microarchitecture)) (2012) |     1 |
+| GT 750M       |   384 | 3.0 | MBPr15 2014 | Kepler (2012) |   0.5 |
+| M1000M        |   512 | 5.0 | Zbook 15 G3 | Kepler (2012) |     1 |
+| GTX 960       |  1024 | 5.2 | E5-2696 v3  | Maxwell (2014) |    2 |
+| Jetson Nano   |   128 | 5.3 |             | [Maxwell](https://en.wikipedia.org/wiki/Maxwell_(microarchitecture)) (2014) |    4 |
+| GTX 1060      |  1280 | 6.1 | i3-6100     | [Pascal](https://en.wikipedia.org/wiki/Pascal_(microarchitecture)) (2016)  |    6 |
+| T4            |  2560 | 7.5 | Google Colab | Turing (2018) |   16 |
+| RTX 2080 Ti   |  4352 | 7.5 | i5-7600K    | [Turing](https://en.wikipedia.org/wiki/Turing_(microarchitecture)) (2018)  |   11 |
+| RTX 3060 Ti   |  4864 | 8.6 | i7-8700     | Ampere (2020)  |    8 |
+| RTX 3070 Ti   |  6144 | 8.6 | i3-10100    | [Ampere](https://en.wikipedia.org/wiki/Ampere_(microarchitecture)) (2020)  |    8 |
 
 Only __two__ of 8 are supported by the Triton GPU compiler. How about a newer GPU? At least I can use the T4 in Google's colaboratory for free. The training takes one hour. And you get two hours for free. Ollama only needs CUDA Compute Capability 5.0 and can therefore run on 5 of my graphic cards. Plus the RX 6600 with ROCm and a hack.
 
@@ -108,6 +110,14 @@ Only __two__ of 8 are supported by the Triton GPU compiler. How about a newer GP
 - Under development: CPUs
 
 My AMD RX 470, RX 580 and RX 6600 are too old to be [supported by ROCm](https://rocm.docs.amd.com/en/latest/compatibility/compatibility-matrix.html), even though the 6600 already uses [RNDA2](https://en.wikipedia.org/wiki/RDNA_2). The RX 6600 can be used if the llvm target is overwritten to be gfx1030 instead of [gfx1032](https://rocm.docs.amd.com/projects/install-on-windows/en/latest/reference/system-requirements.html). The ROCm installation needs 30 GB! In this regard it seems Nvidia has been ahead of the game for some time now with their proprietary  [CUDA since 2007](https://en.wikipedia.org/wiki/CUDA). Support for the first Tesla GPUs with Compute Capability 1.1 was only dropped with CUDA SDK 7.0 in 2016. For the current CUDA SDK 12.0 (since 2022) a CC of 5.0 (Maxwell and newer since 2014) is required. That's true [for ollama](https://github.com/ollama/ollama/blob/main/docs/gpu.md), too. In 2024 that's 10 year old hardware.
+
+### 2025 Legacy status for 5.0 [Maxwell](https://en.wikipedia.org/wiki/Maxwell_(microarchitecture)), 6.0 [Pascal](https://en.wikipedia.org/wiki/Pascal_(microarchitecture)) and 7.0 [Volta](https://en.wikipedia.org/wiki/Volta_(microarchitecture))
+
+With the release of the [Blackwell](https://en.wikipedia.org/wiki/Blackwell_(microarchitecture)) GPUs of the [GeForce RTX 50 series](https://en.wikipedia.org/wiki/GeForce_RTX_50_series) early 2025 a new version of the SDK was released with version [CUDA 12.8](https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html). Under **1.5.1 Deprecated Architectures** it states: Architecture support for Maxwell, Pascal, and Volta is considered feature-complete and will be frozen in an upcoming release. Found on [phoronix.com 2025-01-24](https://www.phoronix.com/news/Maxwe--Pascal-Volta-Legacy-Near).
+
+![Deprecated Architectures](pic/2025-01-24_cuda12.8.png)
+
+It looks like [Turing](https://en.wikipedia.org/wiki/Turing_(microarchitecture)) is still new enough to receive more updates and features with Compute Capability 7.5 since the new Ray-Tracing (RT) cores are included. This is found in [GeForce 16 series](https://en.wikipedia.org/wiki/GeForce_16_series) and [GeForce 20 series](https://en.wikipedia.org/wiki/GeForce_RTX_20_series).
 
 ## Inference on local hardware
 
