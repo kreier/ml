@@ -64,8 +64,14 @@ cmake -B build -DGGML_CUDA=ON -DLLAMA_CURL=ON
 cmake --build build --config Release
 ```
 
-### Benchmark
+### Benchmark CPU
 
 ``` sh
-llama-bench -hf bartowski/DeepSeek-R1-Distill-Qwen-1.5B-GGUF
+$ ./llama.cpp/build/bin/llama-bench -m .cache/llama.cpp/bartowski_DeepSeek-R1-Distill-Qwen-1.5B-GGUF_DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M.gguf
+| model                          |       size |     params | backend    | threads |          test |                  t/s |
+| ------------------------------ | ---------: | ---------: | ---------- | ------: | ------------: | -------------------: |
+| qwen2 1.5B Q4_K - Medium       |   1.04 GiB |     1.78 B | CPU        |       4 |         pp512 |         58.53 ± 6.88 |
+| qwen2 1.5B Q4_K - Medium       |   1.04 GiB |     1.78 B | CPU        |       4 |         tg128 |         24.18 ± 3.41 |
+
+build: 19d3c829 (4677)
 ```
