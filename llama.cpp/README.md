@@ -30,3 +30,42 @@ llama-cli -hf bartowski/DeepSeek-R1-Distill-Qwen-1.5B-GGUF
 ```
 
 It will download the `GGUF` file to your `~/.cache/llama.cpp/` folder.
+
+After a while you have your input prompt, and you can say simple things like `Hi` or ask questions like `How many R's are in the word STRAWBERRY`. To exit you type `Ctrl-C`.
+
+## Compile with CUDA support
+
+### Toolkit
+
+Have the[ CUDA Toolkit](https://developer.nvidia.com/cuda-toolkit) installed. In my case its a few commands:
+
+``` sh
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-ubuntu2404.pin
+sudo mv cuda-ubuntu2404.pin /etc/apt/preferences.d/cuda-repository-pin-600
+wget https://developer.download.nvidia.com/compute/cuda/12.8.0/local_installers/cuda-repo-ubuntu2404-12-8-local_12.8.0-570.86.10-1_amd64.deb
+sudo dpkg -i cuda-repo-ubuntu2404-12-8-local_12.8.0-570.86.10-1_amd64.deb
+sudo cp /var/cuda-repo-ubuntu2404-12-8-local/cuda-*-keyring.gpg /usr/share/keyrings/
+sudo apt-get update
+sudo apt-get -y install cuda-toolkit-12-8
+```
+
+### Driver
+
+You need to
+
+``` sh
+sudo apt-get install -y nvidia-open
+```
+
+### Compile
+
+``` sh
+cmake -B build -DGGML_CUDA=ON -DLLAMA_CURL=ON
+cmake --build build --config Release
+```
+
+### Benchmark
+
+``` sh
+llama-bench -hf bartowski/DeepSeek-R1-Distill-Qwen-1.5B-GGUF
+```
