@@ -64,10 +64,20 @@ cmake -B build -DGGML_CUDA=ON -DLLAMA_CURL=ON
 cmake --build build --config Release
 ```
 
-### Benchmark CPU
+### Run with CUDA support
+
+You need to set the `-ngl` or `--n-gpu-layers` to 999, otherwise only the CPU will be utilized 
 
 ``` sh
-$ ./llama.cpp/build/bin/llama-bench -m .cache/llama.cpp/bartowski_DeepSeek-R1-Distill-Qwen-1.5B-GGUF_DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M.gguf
+./build/bin/llama-cli -ngl 999 -hf bartowski/DeepSeek-R1-Distill-Qwen-1.5B-GGUF
+```
+
+## Benchmarking with llama-bench
+
+### CPU
+
+``` sh
+$ ./llama-bench -m .cache/llama.cpp/DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M.gguf
 | model                          |       size |     params | backend    | threads |          test |                  t/s |
 | ------------------------------ | ---------: | ---------: | ---------- | ------: | ------------: | -------------------: |
 | qwen2 1.5B Q4_K - Medium       |   1.04 GiB |     1.78 B | CPU        |       4 |         pp512 |         58.53 ± 6.88 |
@@ -75,3 +85,21 @@ $ ./llama.cpp/build/bin/llama-bench -m .cache/llama.cpp/bartowski_DeepSeek-R1-Di
 
 build: 19d3c829 (4677)
 ```
+
+### GPU
+
+``` sh
+$ ./llama-bench -m /mnt/data/models/DeepSeek-R1-1.5B-Q4_K_M.gguf -ngl 999
+ggml_cuda_init: GGML_CUDA_FORCE_MMQ:    no
+ggml_cuda_init: GGML_CUDA_FORCE_CUBLAS: no
+ggml_cuda_init: found 1 CUDA devices:
+  Device 0: NVIDIA GeForce RTX 3070 Ti, compute capability 8.6, VMM: yes
+| model                          |       size |     params | backend    | ngl |          test |                  t/s |
+| ------------------------------ | ---------: | ---------: | ---------- | --: | ------------: | -------------------: |
+| qwen2 1.5B Q4_K - Medium       |   1.04 GiB |     1.78 B | CUDA       | 999 |         pp512 |    10292.97 ± 584.16 |
+| qwen2 1.5B Q4_K - Medium       |   1.04 GiB |     1.78 B | CUDA       | 999 |         tg128 |        233.28 ± 2.37 |
+
+build: 19d3c829 (4677)
+```
+
+The old instructions were: `./llama.cpp/build/bin/llama-bench -m .cache/llama.cpp/bartowski_DeepSeek-R1-Distill-Qwen-1.5B-GGUF_DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M.gguf -ngl 999`
