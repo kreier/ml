@@ -63,3 +63,7 @@ Deepseek has some documentation in [their github profile](https://github.com/dee
 
 - [A paper describing the model](https://github.com/deepseek-ai/DeepSeek-R1/blob/main/DeepSeek_R1.pdf), 20 pages
 - [A technical report](https://github.com/deepseek-ai/DeepSeek-V3/blob/main/DeepSeek_V3.pdf), 48 pages
+
+## MLX faster than llama.cpp in Ollama
+
+This needs further testing, but with LM Studio on my M1 Mac 16GB I get 45 t/s on mlx compared to 41 t/s for DeekSeek qwen2 1.5b 4Q_K_M. See the logfiles in this folder.

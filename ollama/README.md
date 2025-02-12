@@ -2,7 +2,12 @@
 
 This is just a documentation of my learning progress. 
 
-## 2025 starting smartphones
+## Memory allocation on multiple GPUs
 
-I have some systems with several CPUs, and some times they can be used to trian IA models.
+In general ollama does a good job finding multiple GPUs and split the layers of the model to different GPUs. Yet sometimes it reservers too much overhead and does not utilizes the full potential. A granular settings approach did not help yet.
+
+
+## 2025 starting on smartphones
+
+I have some systems with several CPUs, and some times they can be used to train AI models.
 

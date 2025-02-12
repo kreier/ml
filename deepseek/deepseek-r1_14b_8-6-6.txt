@@ -1,0 +1,487 @@
+-- Boot f93b51de9de14206b86131a698f1cace --
+Jan 29 00:43:11 i3-6100 systemd[1]: Started ollama.service - Ollama Service.
+Jan 29 00:43:11 i3-6100 ollama[1477]: 2025/01/29 00:43:11 routes.go:1259: INFO server config env="map[CUDA_VISIBLE_DEVICES: GPU_DEVICE_ORDINAL: HIP_VISIBLE_DEVICES: HSA_OVERRIDE_GFX_VERSION: HTTPS_PROXY: HTTP_PROXY: NO_PROXY: OLLAMA_DEBUG:false OLLAMA_FLASH_ATTENTION:false OLLAMA_GPU_OVERHEAD:0 OLLAMA_HOST:http://127.0.0.1:11434 OLLAMA_INTEL_GPU:false OLLAMA_KEEP_ALIVE:5m0s OLLAMA_KV_CACHE_TYPE: OLLAMA_LLM_LIBRARY: OLLAMA_LOAD_TIMEOUT:5m0s OLLAMA_MAX_LOADED_MODELS:0 OLLAMA_MAX_QUEUE:512 OLLAMA_MODELS:/usr/share/ollama/.ollama/models OLLAMA_MULTIUSER_CACHE:false OLLAMA_NOHISTORY:false OLLAMA_NOPRUNE:false OLLAMA_NUM_PARALLEL:0 OLLAMA_ORIGINS:[http://localhost https://localhost http://localhost:* https://localhost:* http://127.0.0.1 https://127.0.0.1 http://127.0.0.1:* https://127.0.0.1:* http://0.0.0.0 https://0.0.0.0 http://0.0.0.0:* https://0.0.0.0:* app://* file://* tauri://* vscode-webview://*] OLLAMA_SCHED_SPREAD:false ROCR_VISIBLE_DEVICES: http_proxy: https_proxy: no_proxy:]"
+Jan 29 00:43:11 i3-6100 ollama[1477]: time=2025-01-29T00:43:11.360+07:00 level=INFO source=images.go:757 msg="total blobs: 23"
+Jan 29 00:43:11 i3-6100 ollama[1477]: time=2025-01-29T00:43:11.361+07:00 level=INFO source=images.go:764 msg="total unused blobs removed: 0"
+Jan 29 00:43:11 i3-6100 ollama[1477]: [GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+Jan 29 00:43:11 i3-6100 ollama[1477]: [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+Jan 29 00:43:11 i3-6100 ollama[1477]:  - using env:        export GIN_MODE=release
+Jan 29 00:43:11 i3-6100 ollama[1477]:  - using code:        gin.SetMode(gin.ReleaseMode)
+Jan 29 00:43:11 i3-6100 ollama[1477]: [GIN-debug] POST   /api/pull                 --> github.com/ollama/ollama/server.(*Server).PullHandler-fm (5 handlers)
+Jan 29 00:43:11 i3-6100 ollama[1477]: [GIN-debug] POST   /api/generate             --> github.com/ollama/ollama/server.(*Server).GenerateHandler-fm (5 handlers)
+Jan 29 00:43:11 i3-6100 ollama[1477]: [GIN-debug] POST   /api/chat                 --> github.com/ollama/ollama/server.(*Server).ChatHandler-fm (5 handlers)
+Jan 29 00:43:11 i3-6100 ollama[1477]: [GIN-debug] POST   /api/embed                --> github.com/ollama/ollama/server.(*Server).EmbedHandler-fm (5 handlers)
+Jan 29 00:43:11 i3-6100 ollama[1477]: [GIN-debug] POST   /api/embeddings           --> github.com/ollama/ollama/server.(*Server).EmbeddingsHandler-fm (5 handlers)
+Jan 29 00:43:11 i3-6100 ollama[1477]: [GIN-debug] POST   /api/create               --> github.com/ollama/ollama/server.(*Server).CreateHandler-fm (5 handlers)
+Jan 29 00:43:11 i3-6100 ollama[1477]: [GIN-debug] POST   /api/push                 --> github.com/ollama/ollama/server.(*Server).PushHandler-fm (5 handlers)
+Jan 29 00:43:11 i3-6100 ollama[1477]: [GIN-debug] POST   /api/copy                 --> github.com/ollama/ollama/server.(*Server).CopyHandler-fm (5 handlers)
+Jan 29 00:43:11 i3-6100 ollama[1477]: [GIN-debug] DELETE /api/delete               --> github.com/ollama/ollama/server.(*Server).DeleteHandler-fm (5 handlers)
+Jan 29 00:43:11 i3-6100 ollama[1477]: [GIN-debug] POST   /api/show                 --> github.com/ollama/ollama/server.(*Server).ShowHandler-fm (5 handlers)
+Jan 29 00:43:11 i3-6100 ollama[1477]: [GIN-debug] POST   /api/blobs/:digest        --> github.com/ollama/ollama/server.(*Server).CreateBlobHandler-fm (5 handlers)
+Jan 29 00:43:11 i3-6100 ollama[1477]: [GIN-debug] HEAD   /api/blobs/:digest        --> github.com/ollama/ollama/server.(*Server).HeadBlobHandler-fm (5 handlers)
+Jan 29 00:43:11 i3-6100 ollama[1477]: [GIN-debug] GET    /api/ps                   --> github.com/ollama/ollama/server.(*Server).PsHandler-fm (5 handlers)
+Jan 29 00:43:11 i3-6100 ollama[1477]: [GIN-debug] POST   /v1/chat/completions      --> github.com/ollama/ollama/server.(*Server).ChatHandler-fm (6 handlers)
+Jan 29 00:43:11 i3-6100 ollama[1477]: [GIN-debug] POST   /v1/completions           --> github.com/ollama/ollama/server.(*Server).GenerateHandler-fm (6 handlers)
+Jan 29 00:43:11 i3-6100 ollama[1477]: [GIN-debug] POST   /v1/embeddings            --> github.com/ollama/ollama/server.(*Server).EmbedHandler-fm (6 handlers)
+Jan 29 00:43:11 i3-6100 ollama[1477]: [GIN-debug] GET    /v1/models                --> github.com/ollama/ollama/server.(*Server).ListHandler-fm (6 handlers)
+Jan 29 00:43:11 i3-6100 ollama[1477]: [GIN-debug] GET    /v1/models/:model         --> github.com/ollama/ollama/server.(*Server).ShowHandler-fm (6 handlers)
+Jan 29 00:43:11 i3-6100 ollama[1477]: [GIN-debug] GET    /                         --> github.com/ollama/ollama/server.(*Server).GenerateRoutes.func1 (5 handlers)
+Jan 29 00:43:11 i3-6100 ollama[1477]: [GIN-debug] GET    /api/tags                 --> github.com/ollama/ollama/server.(*Server).ListHandler-fm (5 handlers)
+Jan 29 00:43:11 i3-6100 ollama[1477]: [GIN-debug] GET    /api/version              --> github.com/ollama/ollama/server.(*Server).GenerateRoutes.func2 (5 handlers)
+Jan 29 00:43:11 i3-6100 ollama[1477]: [GIN-debug] HEAD   /                         --> github.com/ollama/ollama/server.(*Server).GenerateRoutes.func1 (5 handlers)
+Jan 29 00:43:11 i3-6100 ollama[1477]: [GIN-debug] HEAD   /api/tags                 --> github.com/ollama/ollama/server.(*Server).ListHandler-fm (5 handlers)
+Jan 29 00:43:11 i3-6100 ollama[1477]: [GIN-debug] HEAD   /api/version              --> github.com/ollama/ollama/server.(*Server).GenerateRoutes.func2 (5 handlers)
+Jan 29 00:43:11 i3-6100 ollama[1477]: time=2025-01-29T00:43:11.361+07:00 level=INFO source=routes.go:1310 msg="Listening on 127.0.0.1:11434 (version 0.5.4)"
+Jan 29 00:43:11 i3-6100 ollama[1477]: time=2025-01-29T00:43:11.362+07:00 level=INFO source=routes.go:1339 msg="Dynamic LLM libraries" runners="[cuda_v12_avx rocm_avx cpu cpu_avx cpu_avx2 cuda_v11_avx]"
+Jan 29 00:43:11 i3-6100 ollama[1477]: time=2025-01-29T00:43:11.363+07:00 level=INFO source=gpu.go:226 msg="looking for compatible GPUs"
+Jan 29 00:43:11 i3-6100 ollama[1477]: time=2025-01-29T00:43:11.949+07:00 level=INFO source=types.go:131 msg="inference compute" id=GPU-e02f2a38-eda5-3245-75f9-758e472377b1 library=cuda variant=v12 compute=8.6 driver=12.7 name="NVIDIA GeForce RTX 3060 Ti" total="7.7 GiB" available="7.5 GiB"
+Jan 29 00:43:11 i3-6100 ollama[1477]: time=2025-01-29T00:43:11.949+07:00 level=INFO source=types.go:131 msg="inference compute" id=GPU-5cc67a2a-538e-6f52-2904-ec3f19f02fd0 library=cuda variant=v12 compute=6.1 driver=12.7 name="NVIDIA P106-100" total="5.9 GiB" available="5.9 GiB"
+Jan 29 00:43:11 i3-6100 ollama[1477]: time=2025-01-29T00:43:11.949+07:00 level=INFO source=types.go:131 msg="inference compute" id=GPU-74927047-9229-6a02-47b4-0277f71e86e5 library=cuda variant=v12 compute=6.1 driver=12.7 name="NVIDIA P106-100" total="5.9 GiB" available="5.9 GiB"
+Jan 29 00:44:43 i3-6100 ollama[1477]: [GIN] 2025/01/29 - 00:44:43 | 200 |     603.399µs |       127.0.0.1 | HEAD     "/"
+Jan 29 00:44:43 i3-6100 ollama[1477]: [GIN] 2025/01/29 - 00:44:43 | 200 |    1.961591ms |       127.0.0.1 | GET      "/api/tags"
+Jan 29 00:45:01 i3-6100 ollama[1477]: [GIN] 2025/01/29 - 00:45:01 | 200 |      24.658µs |       127.0.0.1 | HEAD     "/"
+Jan 29 00:45:01 i3-6100 ollama[1477]: [GIN] 2025/01/29 - 00:45:01 | 200 |   22.807482ms |       127.0.0.1 | POST     "/api/show"
+Jan 29 00:45:02 i3-6100 ollama[1477]: time=2025-01-29T00:45:02.044+07:00 level=INFO source=sched.go:730 msg="new model will fit in available VRAM, loading" model=/usr/share/ollama/.ollama/models/blobs/sha256-6e9f90f02bb3b39b59e81916e8cfce9deb45aeaeb9a54a5be4414486b907dc1e library=cuda parallel=4 required="14.1 GiB"
+Jan 29 00:45:02 i3-6100 ollama[1477]: time=2025-01-29T00:45:02.351+07:00 level=INFO source=server.go:104 msg="system memory" total="31.1 GiB" free="29.0 GiB" free_swap="8.0 GiB"
+Jan 29 00:45:02 i3-6100 ollama[1477]: time=2025-01-29T00:45:02.351+07:00 level=INFO source=memory.go:356 msg="offload to cuda" layers.requested=-1 layers.model=49 layers.offload=49 layers.split=17,16,16 memory.available="[7.5 GiB 5.9 GiB 5.9 GiB]" memory.gpu_overhead="0 B" memory.required.full="14.1 GiB" memory.required.partial="14.1 GiB" memory.required.kv="1.5 GiB" memory.required.allocations="[5.0 GiB 4.4 GiB 4.6 GiB]" memory.weights.total="8.9 GiB" memory.weights.repeating="8.3 GiB" memory.weights.nonrepeating="609.1 MiB" memory.graph.full="916.1 MiB" memory.graph.partial="916.1 MiB"
+Jan 29 00:45:02 i3-6100 ollama[1477]: time=2025-01-29T00:45:02.352+07:00 level=INFO source=server.go:376 msg="starting llama server" cmd="/usr/local/lib/ollama/runners/cuda_v12_avx/ollama_llama_server runner --model /usr/share/ollama/.ollama/models/blobs/sha256-6e9f90f02bb3b39b59e81916e8cfce9deb45aeaeb9a54a5be4414486b907dc1e --ctx-size 8192 --batch-size 512 --n-gpu-layers 49 --threads 2 --parallel 4 --tensor-split 17,16,16 --port 34905"
+Jan 29 00:45:02 i3-6100 ollama[1477]: time=2025-01-29T00:45:02.353+07:00 level=INFO source=sched.go:449 msg="loaded runners" count=1
+Jan 29 00:45:02 i3-6100 ollama[1477]: time=2025-01-29T00:45:02.353+07:00 level=INFO source=server.go:555 msg="waiting for llama runner to start responding"
+Jan 29 00:45:02 i3-6100 ollama[1477]: time=2025-01-29T00:45:02.354+07:00 level=INFO source=server.go:589 msg="waiting for server to become available" status="llm server error"
+Jan 29 00:45:02 i3-6100 ollama[1477]: time=2025-01-29T00:45:02.502+07:00 level=INFO source=runner.go:945 msg="starting go runner"
+Jan 29 00:45:02 i3-6100 ollama[1477]: ggml_cuda_init: GGML_CUDA_FORCE_MMQ:    no
+Jan 29 00:45:02 i3-6100 ollama[1477]: ggml_cuda_init: GGML_CUDA_FORCE_CUBLAS: no
+Jan 29 00:45:02 i3-6100 ollama[1477]: ggml_cuda_init: found 3 CUDA devices:
+Jan 29 00:45:02 i3-6100 ollama[1477]:   Device 0: NVIDIA GeForce RTX 3060 Ti, compute capability 8.6, VMM: yes
+Jan 29 00:45:02 i3-6100 ollama[1477]:   Device 1: NVIDIA P106-100, compute capability 6.1, VMM: yes
+Jan 29 00:45:02 i3-6100 ollama[1477]:   Device 2: NVIDIA P106-100, compute capability 6.1, VMM: yes
+Jan 29 00:45:02 i3-6100 ollama[1477]: time=2025-01-29T00:45:02.638+07:00 level=INFO source=runner.go:946 msg=system info="CUDA : ARCHS = 600,610,620,700,720,750,800,860,870,890,900 | USE_GRAPHS = 1 | PEER_MAX_BATCH_SIZE = 128 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | LLAMAFILE = 1 | AARCH64_REPACK = 1 | cgo(gcc)" threads=2
+Jan 29 00:45:02 i3-6100 ollama[1477]: time=2025-01-29T00:45:02.639+07:00 level=INFO source=.:0 msg="Server listening on 127.0.0.1:34905"
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_load_model_from_file: using device CUDA0 (NVIDIA GeForce RTX 3060 Ti) - 7714 MiB free
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_load_model_from_file: using device CUDA1 (NVIDIA P106-100) - 5999 MiB free
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_load_model_from_file: using device CUDA2 (NVIDIA P106-100) - 5999 MiB free
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_model_loader: loaded meta data with 26 key-value pairs and 579 tensors from /usr/share/ollama/.ollama/models/blobs/sha256-6e9f90f02bb3b39b59e81916e8cfce9deb45aeaeb9a54a5be4414486b907dc1e (version GGUF V3 (latest))
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_model_loader: - kv   0:                       general.architecture str              = qwen2
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_model_loader: - kv   1:                               general.type str              = model
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_model_loader: - kv   2:                               general.name str              = DeepSeek R1 Distill Qwen 14B
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_model_loader: - kv   3:                           general.basename str              = DeepSeek-R1-Distill-Qwen
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_model_loader: - kv   4:                         general.size_label str              = 14B
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_model_loader: - kv   5:                          qwen2.block_count u32              = 48
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_model_loader: - kv   6:                       qwen2.context_length u32              = 131072
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_model_loader: - kv   7:                     qwen2.embedding_length u32              = 5120
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_model_loader: - kv   8:                  qwen2.feed_forward_length u32              = 13824
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_model_loader: - kv   9:                 qwen2.attention.head_count u32              = 40
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_model_loader: - kv  10:              qwen2.attention.head_count_kv u32              = 8
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_model_loader: - kv  11:                       qwen2.rope.freq_base f32              = 1000000.000000
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_model_loader: - kv  12:     qwen2.attention.layer_norm_rms_epsilon f32              = 0.000010
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_model_loader: - kv  13:                          general.file_type u32              = 15
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_model_loader: - kv  14:                       tokenizer.ggml.model str              = gpt2
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_model_loader: - kv  15:                         tokenizer.ggml.pre str              = qwen2
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_model_loader: - kv  16:                      tokenizer.ggml.tokens arr[str,152064]  = ["!", "\"", "#", "$", "%", "&", "'", ...
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_model_loader: - kv  17:                  tokenizer.ggml.token_type arr[i32,152064]  = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
+Jan 29 00:45:02 i3-6100 ollama[1477]: time=2025-01-29T00:45:02.857+07:00 level=INFO source=server.go:589 msg="waiting for server to become available" status="llm server loading model"
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_model_loader: - kv  18:                      tokenizer.ggml.merges arr[str,151387]  = ["Ġ Ġ", "ĠĠ ĠĠ", "i n", "Ġ t",...
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_model_loader: - kv  19:                tokenizer.ggml.bos_token_id u32              = 151646
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_model_loader: - kv  20:                tokenizer.ggml.eos_token_id u32              = 151643
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_model_loader: - kv  21:            tokenizer.ggml.padding_token_id u32              = 151643
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_model_loader: - kv  22:               tokenizer.ggml.add_bos_token bool             = true
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_model_loader: - kv  23:               tokenizer.ggml.add_eos_token bool             = false
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_model_loader: - kv  24:                    tokenizer.chat_template str              = {% if not add_generation_prompt is de...
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_model_loader: - kv  25:               general.quantization_version u32              = 2
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_model_loader: - type  f32:  241 tensors
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_model_loader: - type q4_K:  289 tensors
+Jan 29 00:45:02 i3-6100 ollama[1477]: llama_model_loader: - type q6_K:   49 tensors
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_vocab: special_eos_id is not in special_eog_ids - the tokenizer config may be incorrect
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_vocab: special tokens cache size = 22
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_vocab: token to piece cache size = 0.9310 MB
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: format           = GGUF V3 (latest)
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: arch             = qwen2
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: vocab type       = BPE
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: n_vocab          = 152064
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: n_merges         = 151387
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: vocab_only       = 0
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: n_ctx_train      = 131072
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: n_embd           = 5120
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: n_layer          = 48
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: n_head           = 40
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: n_head_kv        = 8
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: n_rot            = 128
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: n_swa            = 0
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: n_embd_head_k    = 128
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: n_embd_head_v    = 128
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: n_gqa            = 5
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: n_embd_k_gqa     = 1024
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: n_embd_v_gqa     = 1024
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: f_norm_eps       = 0.0e+00
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: f_norm_rms_eps   = 1.0e-05
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: f_clamp_kqv      = 0.0e+00
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: f_max_alibi_bias = 0.0e+00
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: f_logit_scale    = 0.0e+00
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: n_ff             = 13824
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: n_expert         = 0
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: n_expert_used    = 0
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: causal attn      = 1
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: pooling type     = 0
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: rope type        = 2
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: rope scaling     = linear
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: freq_base_train  = 1000000.0
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: freq_scale_train = 1
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: n_ctx_orig_yarn  = 131072
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: rope_finetuned   = unknown
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: ssm_d_conv       = 0
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: ssm_d_inner      = 0
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: ssm_d_state      = 0
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: ssm_dt_rank      = 0
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: ssm_dt_b_c_rms   = 0
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: model type       = 14B
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: model ftype      = Q4_K - Medium
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: model params     = 14.77 B
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: model size       = 8.37 GiB (4.87 BPW)
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: general.name     = DeepSeek R1 Distill Qwen 14B
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: BOS token        = 151646 '<｜begin▁of▁sentence｜>'
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: EOS token        = 151643 '<｜end▁of▁sentence｜>'
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: EOT token        = 151643 '<｜end▁of▁sentence｜>'
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: PAD token        = 151643 '<｜end▁of▁sentence｜>'
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: LF token         = 148848 'ÄĬ'
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: FIM PRE token    = 151659 '<|fim_prefix|>'
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: FIM SUF token    = 151661 '<|fim_suffix|>'
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: FIM MID token    = 151660 '<|fim_middle|>'
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: FIM PAD token    = 151662 '<|fim_pad|>'
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: FIM REP token    = 151663 '<|repo_name|>'
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: FIM SEP token    = 151664 '<|file_sep|>'
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: EOG token        = 151643 '<｜end▁of▁sentence｜>'
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: EOG token        = 151662 '<|fim_pad|>'
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: EOG token        = 151663 '<|repo_name|>'
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: EOG token        = 151664 '<|file_sep|>'
+Jan 29 00:45:03 i3-6100 ollama[1477]: llm_load_print_meta: max token length = 256
+Jan 29 00:45:10 i3-6100 ollama[1477]: llm_load_tensors: offloading 48 repeating layers to GPU
+Jan 29 00:45:10 i3-6100 ollama[1477]: llm_load_tensors: offloading output layer to GPU
+Jan 29 00:45:10 i3-6100 ollama[1477]: llm_load_tensors: offloaded 49/49 layers to GPU
+Jan 29 00:45:10 i3-6100 ollama[1477]: llm_load_tensors:   CPU_Mapped model buffer size =   417.66 MiB
+Jan 29 00:45:10 i3-6100 ollama[1477]: llm_load_tensors:        CUDA0 model buffer size =  2679.51 MiB
+Jan 29 00:45:10 i3-6100 ollama[1477]: llm_load_tensors:        CUDA1 model buffer size =  2475.71 MiB
+Jan 29 00:45:10 i3-6100 ollama[1477]: llm_load_tensors:        CUDA2 model buffer size =  2993.16 MiB
+Jan 29 00:45:14 i3-6100 ollama[1477]: llama_new_context_with_model: n_seq_max     = 4
+Jan 29 00:45:14 i3-6100 ollama[1477]: llama_new_context_with_model: n_ctx         = 8192
+Jan 29 00:45:14 i3-6100 ollama[1477]: llama_new_context_with_model: n_ctx_per_seq = 2048
+Jan 29 00:45:14 i3-6100 ollama[1477]: llama_new_context_with_model: n_batch       = 2048
+Jan 29 00:45:14 i3-6100 ollama[1477]: llama_new_context_with_model: n_ubatch      = 512
+Jan 29 00:45:14 i3-6100 ollama[1477]: llama_new_context_with_model: flash_attn    = 0
+Jan 29 00:45:14 i3-6100 ollama[1477]: llama_new_context_with_model: freq_base     = 1000000.0
+Jan 29 00:45:14 i3-6100 ollama[1477]: llama_new_context_with_model: freq_scale    = 1
+Jan 29 00:45:14 i3-6100 ollama[1477]: llama_new_context_with_model: n_ctx_per_seq (2048) < n_ctx_train (131072) -- the full capacity of the model will not be utilized
+Jan 29 00:45:14 i3-6100 ollama[1477]: llama_kv_cache_init:      CUDA0 KV buffer size =   544.00 MiB
+Jan 29 00:45:14 i3-6100 ollama[1477]: llama_kv_cache_init:      CUDA1 KV buffer size =   512.00 MiB
+Jan 29 00:45:14 i3-6100 ollama[1477]: llama_kv_cache_init:      CUDA2 KV buffer size =   480.00 MiB
+Jan 29 00:45:14 i3-6100 ollama[1477]: llama_new_context_with_model: KV self size  = 1536.00 MiB, K (f16):  768.00 MiB, V (f16):  768.00 MiB
+Jan 29 00:45:14 i3-6100 ollama[1477]: llama_new_context_with_model:  CUDA_Host  output buffer size =     2.40 MiB
+Jan 29 00:45:14 i3-6100 ollama[1477]: llama_new_context_with_model: pipeline parallelism enabled (n_copies=4)
+Jan 29 00:45:14 i3-6100 ollama[1477]: llama_new_context_with_model:      CUDA0 compute buffer size =   784.01 MiB
+Jan 29 00:45:14 i3-6100 ollama[1477]: llama_new_context_with_model:      CUDA1 compute buffer size =   784.01 MiB
+Jan 29 00:45:14 i3-6100 ollama[1477]: llama_new_context_with_model:      CUDA2 compute buffer size =   784.02 MiB
+Jan 29 00:45:14 i3-6100 ollama[1477]: llama_new_context_with_model:  CUDA_Host compute buffer size =    74.02 MiB
+Jan 29 00:45:14 i3-6100 ollama[1477]: llama_new_context_with_model: graph nodes  = 1686
+Jan 29 00:45:14 i3-6100 ollama[1477]: llama_new_context_with_model: graph splits = 4
+Jan 29 00:45:14 i3-6100 ollama[1477]: time=2025-01-29T00:45:14.643+07:00 level=INFO source=server.go:594 msg="llama runner started in 12.29 seconds"
+Jan 29 00:45:14 i3-6100 ollama[1477]: [GIN] 2025/01/29 - 00:45:14 | 200 |  13.05586182s |       127.0.0.1 | POST     "/api/generate"
+Jan 29 00:46:22 i3-6100 ollama[1477]: [GIN] 2025/01/29 - 00:46:22 | 200 | 49.343512968s |       127.0.0.1 | POST     "/api/chat"
+Jan 29 00:46:29 i3-6100 ollama[1477]: [GIN] 2025/01/29 - 00:46:29 | 200 |      28.505µs |       127.0.0.1 | HEAD     "/"
+Jan 29 00:46:29 i3-6100 ollama[1477]: [GIN] 2025/01/29 - 00:46:29 | 200 |     136.122µs |       127.0.0.1 | GET      "/api/ps"
+Jan 29 00:46:44 i3-6100 ollama[1477]: [GIN] 2025/01/29 - 00:46:44 | 200 |       20.84µs |       127.0.0.1 | HEAD     "/"
+Jan 29 00:46:44 i3-6100 ollama[1477]: [GIN] 2025/01/29 - 00:46:44 | 200 |    1.013042ms |       127.0.0.1 | POST     "/api/generate"
+Jan 29 00:46:47 i3-6100 ollama[1477]: [GIN] 2025/01/29 - 00:46:47 | 200 |       18.37µs |       127.0.0.1 | HEAD     "/"
+Jan 29 00:46:47 i3-6100 ollama[1477]: [GIN] 2025/01/29 - 00:46:47 | 200 |   19.019049ms |       127.0.0.1 | POST     "/api/show"
+Jan 29 00:46:47 i3-6100 ollama[1477]: time=2025-01-29T00:46:47.429+07:00 level=INFO source=sched.go:730 msg="new model will fit in available VRAM, loading" model=/usr/share/ollama/.ollama/models/blobs/sha256-6e9f90f02bb3b39b59e81916e8cfce9deb45aeaeb9a54a5be4414486b907dc1e library=cuda parallel=4 required="14.1 GiB"
+Jan 29 00:46:47 i3-6100 ollama[1477]: time=2025-01-29T00:46:47.757+07:00 level=INFO source=server.go:104 msg="system memory" total="31.1 GiB" free="28.9 GiB" free_swap="8.0 GiB"
+Jan 29 00:46:47 i3-6100 ollama[1477]: time=2025-01-29T00:46:47.757+07:00 level=INFO source=memory.go:356 msg="offload to cuda" layers.requested=-1 layers.model=49 layers.offload=49 layers.split=17,16,16 memory.available="[7.5 GiB 5.9 GiB 5.9 GiB]" memory.gpu_overhead="0 B" memory.required.full="14.1 GiB" memory.required.partial="14.1 GiB" memory.required.kv="1.5 GiB" memory.required.allocations="[5.0 GiB 4.4 GiB 4.6 GiB]" memory.weights.total="8.9 GiB" memory.weights.repeating="8.3 GiB" memory.weights.nonrepeating="609.1 MiB" memory.graph.full="916.1 MiB" memory.graph.partial="916.1 MiB"
+Jan 29 00:46:47 i3-6100 ollama[1477]: time=2025-01-29T00:46:47.758+07:00 level=INFO source=server.go:376 msg="starting llama server" cmd="/usr/local/lib/ollama/runners/cuda_v12_avx/ollama_llama_server runner --model /usr/share/ollama/.ollama/models/blobs/sha256-6e9f90f02bb3b39b59e81916e8cfce9deb45aeaeb9a54a5be4414486b907dc1e --ctx-size 8192 --batch-size 512 --n-gpu-layers 49 --threads 2 --parallel 4 --tensor-split 17,16,16 --port 38619"
+Jan 29 00:46:47 i3-6100 ollama[1477]: time=2025-01-29T00:46:47.758+07:00 level=INFO source=sched.go:449 msg="loaded runners" count=1
+Jan 29 00:46:47 i3-6100 ollama[1477]: time=2025-01-29T00:46:47.758+07:00 level=INFO source=server.go:555 msg="waiting for llama runner to start responding"
+Jan 29 00:46:47 i3-6100 ollama[1477]: time=2025-01-29T00:46:47.759+07:00 level=INFO source=server.go:589 msg="waiting for server to become available" status="llm server error"
+Jan 29 00:46:47 i3-6100 ollama[1477]: time=2025-01-29T00:46:47.803+07:00 level=INFO source=runner.go:945 msg="starting go runner"
+Jan 29 00:46:47 i3-6100 ollama[1477]: ggml_cuda_init: GGML_CUDA_FORCE_MMQ:    no
+Jan 29 00:46:47 i3-6100 ollama[1477]: ggml_cuda_init: GGML_CUDA_FORCE_CUBLAS: no
+Jan 29 00:46:47 i3-6100 ollama[1477]: ggml_cuda_init: found 3 CUDA devices:
+Jan 29 00:46:47 i3-6100 ollama[1477]:   Device 0: NVIDIA GeForce RTX 3060 Ti, compute capability 8.6, VMM: yes
+Jan 29 00:46:47 i3-6100 ollama[1477]:   Device 1: NVIDIA P106-100, compute capability 6.1, VMM: yes
+Jan 29 00:46:47 i3-6100 ollama[1477]:   Device 2: NVIDIA P106-100, compute capability 6.1, VMM: yes
+Jan 29 00:46:47 i3-6100 ollama[1477]: time=2025-01-29T00:46:47.932+07:00 level=INFO source=runner.go:946 msg=system info="CUDA : ARCHS = 600,610,620,700,720,750,800,860,870,890,900 | USE_GRAPHS = 1 | PEER_MAX_BATCH_SIZE = 128 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | LLAMAFILE = 1 | AARCH64_REPACK = 1 | cgo(gcc)" threads=2
+Jan 29 00:46:47 i3-6100 ollama[1477]: time=2025-01-29T00:46:47.932+07:00 level=INFO source=.:0 msg="Server listening on 127.0.0.1:38619"
+Jan 29 00:46:48 i3-6100 ollama[1477]: time=2025-01-29T00:46:48.012+07:00 level=INFO source=server.go:589 msg="waiting for server to become available" status="llm server loading model"
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_load_model_from_file: using device CUDA0 (NVIDIA GeForce RTX 3060 Ti) - 7714 MiB free
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_load_model_from_file: using device CUDA1 (NVIDIA P106-100) - 5999 MiB free
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_load_model_from_file: using device CUDA2 (NVIDIA P106-100) - 5999 MiB free
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_model_loader: loaded meta data with 26 key-value pairs and 579 tensors from /usr/share/ollama/.ollama/models/blobs/sha256-6e9f90f02bb3b39b59e81916e8cfce9deb45aeaeb9a54a5be4414486b907dc1e (version GGUF V3 (latest))
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_model_loader: - kv   0:                       general.architecture str              = qwen2
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_model_loader: - kv   1:                               general.type str              = model
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_model_loader: - kv   2:                               general.name str              = DeepSeek R1 Distill Qwen 14B
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_model_loader: - kv   3:                           general.basename str              = DeepSeek-R1-Distill-Qwen
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_model_loader: - kv   4:                         general.size_label str              = 14B
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_model_loader: - kv   5:                          qwen2.block_count u32              = 48
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_model_loader: - kv   6:                       qwen2.context_length u32              = 131072
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_model_loader: - kv   7:                     qwen2.embedding_length u32              = 5120
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_model_loader: - kv   8:                  qwen2.feed_forward_length u32              = 13824
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_model_loader: - kv   9:                 qwen2.attention.head_count u32              = 40
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_model_loader: - kv  10:              qwen2.attention.head_count_kv u32              = 8
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_model_loader: - kv  11:                       qwen2.rope.freq_base f32              = 1000000.000000
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_model_loader: - kv  12:     qwen2.attention.layer_norm_rms_epsilon f32              = 0.000010
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_model_loader: - kv  13:                          general.file_type u32              = 15
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_model_loader: - kv  14:                       tokenizer.ggml.model str              = gpt2
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_model_loader: - kv  15:                         tokenizer.ggml.pre str              = qwen2
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_model_loader: - kv  16:                      tokenizer.ggml.tokens arr[str,152064]  = ["!", "\"", "#", "$", "%", "&", "'", ...
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_model_loader: - kv  17:                  tokenizer.ggml.token_type arr[i32,152064]  = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_model_loader: - kv  18:                      tokenizer.ggml.merges arr[str,151387]  = ["Ġ Ġ", "ĠĠ ĠĠ", "i n", "Ġ t",...
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_model_loader: - kv  19:                tokenizer.ggml.bos_token_id u32              = 151646
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_model_loader: - kv  20:                tokenizer.ggml.eos_token_id u32              = 151643
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_model_loader: - kv  21:            tokenizer.ggml.padding_token_id u32              = 151643
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_model_loader: - kv  22:               tokenizer.ggml.add_bos_token bool             = true
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_model_loader: - kv  23:               tokenizer.ggml.add_eos_token bool             = false
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_model_loader: - kv  24:                    tokenizer.chat_template str              = {% if not add_generation_prompt is de...
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_model_loader: - kv  25:               general.quantization_version u32              = 2
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_model_loader: - type  f32:  241 tensors
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_model_loader: - type q4_K:  289 tensors
+Jan 29 00:46:48 i3-6100 ollama[1477]: llama_model_loader: - type q6_K:   49 tensors
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_vocab: special_eos_id is not in special_eog_ids - the tokenizer config may be incorrect
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_vocab: special tokens cache size = 22
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_vocab: token to piece cache size = 0.9310 MB
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: format           = GGUF V3 (latest)
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: arch             = qwen2
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: vocab type       = BPE
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: n_vocab          = 152064
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: n_merges         = 151387
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: vocab_only       = 0
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: n_ctx_train      = 131072
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: n_embd           = 5120
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: n_layer          = 48
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: n_head           = 40
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: n_head_kv        = 8
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: n_rot            = 128
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: n_swa            = 0
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: n_embd_head_k    = 128
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: n_embd_head_v    = 128
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: n_gqa            = 5
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: n_embd_k_gqa     = 1024
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: n_embd_v_gqa     = 1024
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: f_norm_eps       = 0.0e+00
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: f_norm_rms_eps   = 1.0e-05
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: f_clamp_kqv      = 0.0e+00
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: f_max_alibi_bias = 0.0e+00
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: f_logit_scale    = 0.0e+00
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: n_ff             = 13824
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: n_expert         = 0
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: n_expert_used    = 0
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: causal attn      = 1
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: pooling type     = 0
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: rope type        = 2
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: rope scaling     = linear
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: freq_base_train  = 1000000.0
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: freq_scale_train = 1
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: n_ctx_orig_yarn  = 131072
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: rope_finetuned   = unknown
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: ssm_d_conv       = 0
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: ssm_d_inner      = 0
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: ssm_d_state      = 0
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: ssm_dt_rank      = 0
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: ssm_dt_b_c_rms   = 0
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: model type       = 14B
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: model ftype      = Q4_K - Medium
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: model params     = 14.77 B
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: model size       = 8.37 GiB (4.87 BPW)
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: general.name     = DeepSeek R1 Distill Qwen 14B
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: BOS token        = 151646 '<｜begin▁of▁sentence｜>'
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: EOS token        = 151643 '<｜end▁of▁sentence｜>'
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: EOT token        = 151643 '<｜end▁of▁sentence｜>'
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: PAD token        = 151643 '<｜end▁of▁sentence｜>'
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: LF token         = 148848 'ÄĬ'
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: FIM PRE token    = 151659 '<|fim_prefix|>'
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: FIM SUF token    = 151661 '<|fim_suffix|>'
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: FIM MID token    = 151660 '<|fim_middle|>'
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: FIM PAD token    = 151662 '<|fim_pad|>'
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: FIM REP token    = 151663 '<|repo_name|>'
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: FIM SEP token    = 151664 '<|file_sep|>'
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: EOG token        = 151643 '<｜end▁of▁sentence｜>'
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: EOG token        = 151662 '<|fim_pad|>'
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: EOG token        = 151663 '<|repo_name|>'
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: EOG token        = 151664 '<|file_sep|>'
+Jan 29 00:46:48 i3-6100 ollama[1477]: llm_load_print_meta: max token length = 256
+Jan 29 00:46:49 i3-6100 ollama[1477]: llm_load_tensors: offloading 48 repeating layers to GPU
+Jan 29 00:46:49 i3-6100 ollama[1477]: llm_load_tensors: offloading output layer to GPU
+Jan 29 00:46:49 i3-6100 ollama[1477]: llm_load_tensors: offloaded 49/49 layers to GPU
+Jan 29 00:46:49 i3-6100 ollama[1477]: llm_load_tensors:   CPU_Mapped model buffer size =   417.66 MiB
+Jan 29 00:46:49 i3-6100 ollama[1477]: llm_load_tensors:        CUDA0 model buffer size =  2679.51 MiB
+Jan 29 00:46:49 i3-6100 ollama[1477]: llm_load_tensors:        CUDA1 model buffer size =  2475.71 MiB
+Jan 29 00:46:49 i3-6100 ollama[1477]: llm_load_tensors:        CUDA2 model buffer size =  2993.16 MiB
+Jan 29 00:46:53 i3-6100 ollama[1477]: llama_new_context_with_model: n_seq_max     = 4
+Jan 29 00:46:53 i3-6100 ollama[1477]: llama_new_context_with_model: n_ctx         = 8192
+Jan 29 00:46:53 i3-6100 ollama[1477]: llama_new_context_with_model: n_ctx_per_seq = 2048
+Jan 29 00:46:53 i3-6100 ollama[1477]: llama_new_context_with_model: n_batch       = 2048
+Jan 29 00:46:53 i3-6100 ollama[1477]: llama_new_context_with_model: n_ubatch      = 512
+Jan 29 00:46:53 i3-6100 ollama[1477]: llama_new_context_with_model: flash_attn    = 0
+Jan 29 00:46:53 i3-6100 ollama[1477]: llama_new_context_with_model: freq_base     = 1000000.0
+Jan 29 00:46:53 i3-6100 ollama[1477]: llama_new_context_with_model: freq_scale    = 1
+Jan 29 00:46:53 i3-6100 ollama[1477]: llama_new_context_with_model: n_ctx_per_seq (2048) < n_ctx_train (131072) -- the full capacity of the model will not be utilized
+Jan 29 00:46:53 i3-6100 ollama[1477]: llama_kv_cache_init:      CUDA0 KV buffer size =   544.00 MiB
+Jan 29 00:46:53 i3-6100 ollama[1477]: llama_kv_cache_init:      CUDA1 KV buffer size =   512.00 MiB
+Jan 29 00:46:53 i3-6100 ollama[1477]: llama_kv_cache_init:      CUDA2 KV buffer size =   480.00 MiB
+Jan 29 00:46:53 i3-6100 ollama[1477]: llama_new_context_with_model: KV self size  = 1536.00 MiB, K (f16):  768.00 MiB, V (f16):  768.00 MiB
+Jan 29 00:46:53 i3-6100 ollama[1477]: llama_new_context_with_model:  CUDA_Host  output buffer size =     2.40 MiB
+Jan 29 00:46:53 i3-6100 ollama[1477]: llama_new_context_with_model: pipeline parallelism enabled (n_copies=4)
+Jan 29 00:46:53 i3-6100 ollama[1477]: llama_new_context_with_model:      CUDA0 compute buffer size =   784.01 MiB
+Jan 29 00:46:53 i3-6100 ollama[1477]: llama_new_context_with_model:      CUDA1 compute buffer size =   784.01 MiB
+Jan 29 00:46:53 i3-6100 ollama[1477]: llama_new_context_with_model:      CUDA2 compute buffer size =   784.02 MiB
+Jan 29 00:46:53 i3-6100 ollama[1477]: llama_new_context_with_model:  CUDA_Host compute buffer size =    74.02 MiB
+Jan 29 00:46:53 i3-6100 ollama[1477]: llama_new_context_with_model: graph nodes  = 1686
+Jan 29 00:46:53 i3-6100 ollama[1477]: llama_new_context_with_model: graph splits = 4
+Jan 29 00:46:53 i3-6100 ollama[1477]: time=2025-01-29T00:46:53.529+07:00 level=INFO source=server.go:594 msg="llama runner started in 5.77 seconds"
+Jan 29 00:46:53 i3-6100 ollama[1477]: [GIN] 2025/01/29 - 00:46:53 | 200 |  6.475610461s |       127.0.0.1 | POST     "/api/generate"
+Jan 29 00:48:40 i3-6100 ollama[1477]: [GIN] 2025/01/29 - 00:48:40 | 200 |         1m43s |       127.0.0.1 | POST     "/api/chat"
+Jan 29 00:50:20 i3-6100 ollama[1477]: [GIN] 2025/01/29 - 00:50:20 | 200 |       24.04µs |       127.0.0.1 | HEAD     "/"
+Jan 29 00:50:20 i3-6100 ollama[1477]: [GIN] 2025/01/29 - 00:50:20 | 200 |      27.966µs |       127.0.0.1 | GET      "/api/ps"
+Jan 29 00:54:06 i3-6100 ollama[1477]: [GIN] 2025/01/29 - 00:54:06 | 200 |      24.473µs |       127.0.0.1 | HEAD     "/"
+Jan 29 00:54:06 i3-6100 ollama[1477]: [GIN] 2025/01/29 - 00:54:06 | 200 |    20.41191ms |       127.0.0.1 | POST     "/api/show"
+Jan 29 00:54:06 i3-6100 ollama[1477]: time=2025-01-29T00:54:06.530+07:00 level=INFO source=sched.go:730 msg="new model will fit in available VRAM, loading" model=/usr/share/ollama/.ollama/models/blobs/sha256-6e9f90f02bb3b39b59e81916e8cfce9deb45aeaeb9a54a5be4414486b907dc1e library=cuda parallel=4 required="14.1 GiB"
+Jan 29 00:54:06 i3-6100 ollama[1477]: time=2025-01-29T00:54:06.842+07:00 level=INFO source=server.go:104 msg="system memory" total="31.1 GiB" free="28.9 GiB" free_swap="8.0 GiB"
+Jan 29 00:54:06 i3-6100 ollama[1477]: time=2025-01-29T00:54:06.843+07:00 level=INFO source=memory.go:356 msg="offload to cuda" layers.requested=-1 layers.model=49 layers.offload=49 layers.split=17,16,16 memory.available="[7.5 GiB 5.9 GiB 5.9 GiB]" memory.gpu_overhead="0 B" memory.required.full="14.1 GiB" memory.required.partial="14.1 GiB" memory.required.kv="1.5 GiB" memory.required.allocations="[5.0 GiB 4.4 GiB 4.6 GiB]" memory.weights.total="8.9 GiB" memory.weights.repeating="8.3 GiB" memory.weights.nonrepeating="609.1 MiB" memory.graph.full="916.1 MiB" memory.graph.partial="916.1 MiB"
+Jan 29 00:54:06 i3-6100 ollama[1477]: time=2025-01-29T00:54:06.843+07:00 level=INFO source=server.go:376 msg="starting llama server" cmd="/usr/local/lib/ollama/runners/cuda_v12_avx/ollama_llama_server runner --model /usr/share/ollama/.ollama/models/blobs/sha256-6e9f90f02bb3b39b59e81916e8cfce9deb45aeaeb9a54a5be4414486b907dc1e --ctx-size 8192 --batch-size 512 --n-gpu-layers 49 --threads 2 --parallel 4 --tensor-split 17,16,16 --port 44155"
+Jan 29 00:54:06 i3-6100 ollama[1477]: time=2025-01-29T00:54:06.844+07:00 level=INFO source=sched.go:449 msg="loaded runners" count=1
+Jan 29 00:54:06 i3-6100 ollama[1477]: time=2025-01-29T00:54:06.844+07:00 level=INFO source=server.go:555 msg="waiting for llama runner to start responding"
+Jan 29 00:54:06 i3-6100 ollama[1477]: time=2025-01-29T00:54:06.844+07:00 level=INFO source=server.go:589 msg="waiting for server to become available" status="llm server error"
+Jan 29 00:54:06 i3-6100 ollama[1477]: time=2025-01-29T00:54:06.888+07:00 level=INFO source=runner.go:945 msg="starting go runner"
+Jan 29 00:54:06 i3-6100 ollama[1477]: ggml_cuda_init: GGML_CUDA_FORCE_MMQ:    no
+Jan 29 00:54:06 i3-6100 ollama[1477]: ggml_cuda_init: GGML_CUDA_FORCE_CUBLAS: no
+Jan 29 00:54:06 i3-6100 ollama[1477]: ggml_cuda_init: found 3 CUDA devices:
+Jan 29 00:54:06 i3-6100 ollama[1477]:   Device 0: NVIDIA GeForce RTX 3060 Ti, compute capability 8.6, VMM: yes
+Jan 29 00:54:06 i3-6100 ollama[1477]:   Device 1: NVIDIA P106-100, compute capability 6.1, VMM: yes
+Jan 29 00:54:06 i3-6100 ollama[1477]:   Device 2: NVIDIA P106-100, compute capability 6.1, VMM: yes
+Jan 29 00:54:07 i3-6100 ollama[1477]: time=2025-01-29T00:54:07.017+07:00 level=INFO source=runner.go:946 msg=system info="CUDA : ARCHS = 600,610,620,700,720,750,800,860,870,890,900 | USE_GRAPHS = 1 | PEER_MAX_BATCH_SIZE = 128 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | LLAMAFILE = 1 | AARCH64_REPACK = 1 | cgo(gcc)" threads=2
+Jan 29 00:54:07 i3-6100 ollama[1477]: time=2025-01-29T00:54:07.018+07:00 level=INFO source=.:0 msg="Server listening on 127.0.0.1:44155"
+Jan 29 00:54:07 i3-6100 ollama[1477]: time=2025-01-29T00:54:07.096+07:00 level=INFO source=server.go:589 msg="waiting for server to become available" status="llm server loading model"
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_load_model_from_file: using device CUDA0 (NVIDIA GeForce RTX 3060 Ti) - 7714 MiB free
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_load_model_from_file: using device CUDA1 (NVIDIA P106-100) - 5999 MiB free
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_load_model_from_file: using device CUDA2 (NVIDIA P106-100) - 5999 MiB free
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_model_loader: loaded meta data with 26 key-value pairs and 579 tensors from /usr/share/ollama/.ollama/models/blobs/sha256-6e9f90f02bb3b39b59e81916e8cfce9deb45aeaeb9a54a5be4414486b907dc1e (version GGUF V3 (latest))
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_model_loader: Dumping metadata keys/values. Note: KV overrides do not apply in this output.
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_model_loader: - kv   0:                       general.architecture str              = qwen2
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_model_loader: - kv   1:                               general.type str              = model
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_model_loader: - kv   2:                               general.name str              = DeepSeek R1 Distill Qwen 14B
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_model_loader: - kv   3:                           general.basename str              = DeepSeek-R1-Distill-Qwen
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_model_loader: - kv   4:                         general.size_label str              = 14B
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_model_loader: - kv   5:                          qwen2.block_count u32              = 48
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_model_loader: - kv   6:                       qwen2.context_length u32              = 131072
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_model_loader: - kv   7:                     qwen2.embedding_length u32              = 5120
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_model_loader: - kv   8:                  qwen2.feed_forward_length u32              = 13824
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_model_loader: - kv   9:                 qwen2.attention.head_count u32              = 40
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_model_loader: - kv  10:              qwen2.attention.head_count_kv u32              = 8
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_model_loader: - kv  11:                       qwen2.rope.freq_base f32              = 1000000.000000
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_model_loader: - kv  12:     qwen2.attention.layer_norm_rms_epsilon f32              = 0.000010
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_model_loader: - kv  13:                          general.file_type u32              = 15
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_model_loader: - kv  14:                       tokenizer.ggml.model str              = gpt2
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_model_loader: - kv  15:                         tokenizer.ggml.pre str              = qwen2
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_model_loader: - kv  16:                      tokenizer.ggml.tokens arr[str,152064]  = ["!", "\"", "#", "$", "%", "&", "'", ...
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_model_loader: - kv  17:                  tokenizer.ggml.token_type arr[i32,152064]  = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, ...
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_model_loader: - kv  18:                      tokenizer.ggml.merges arr[str,151387]  = ["Ġ Ġ", "ĠĠ ĠĠ", "i n", "Ġ t",...
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_model_loader: - kv  19:                tokenizer.ggml.bos_token_id u32              = 151646
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_model_loader: - kv  20:                tokenizer.ggml.eos_token_id u32              = 151643
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_model_loader: - kv  21:            tokenizer.ggml.padding_token_id u32              = 151643
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_model_loader: - kv  22:               tokenizer.ggml.add_bos_token bool             = true
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_model_loader: - kv  23:               tokenizer.ggml.add_eos_token bool             = false
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_model_loader: - kv  24:                    tokenizer.chat_template str              = {% if not add_generation_prompt is de...
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_model_loader: - kv  25:               general.quantization_version u32              = 2
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_model_loader: - type  f32:  241 tensors
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_model_loader: - type q4_K:  289 tensors
+Jan 29 00:54:07 i3-6100 ollama[1477]: llama_model_loader: - type q6_K:   49 tensors
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_vocab: special_eos_id is not in special_eog_ids - the tokenizer config may be incorrect
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_vocab: special tokens cache size = 22
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_vocab: token to piece cache size = 0.9310 MB
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: format           = GGUF V3 (latest)
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: arch             = qwen2
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: vocab type       = BPE
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: n_vocab          = 152064
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: n_merges         = 151387
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: vocab_only       = 0
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: n_ctx_train      = 131072
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: n_embd           = 5120
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: n_layer          = 48
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: n_head           = 40
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: n_head_kv        = 8
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: n_rot            = 128
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: n_swa            = 0
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: n_embd_head_k    = 128
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: n_embd_head_v    = 128
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: n_gqa            = 5
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: n_embd_k_gqa     = 1024
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: n_embd_v_gqa     = 1024
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: f_norm_eps       = 0.0e+00
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: f_norm_rms_eps   = 1.0e-05
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: f_clamp_kqv      = 0.0e+00
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: f_max_alibi_bias = 0.0e+00
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: f_logit_scale    = 0.0e+00
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: n_ff             = 13824
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: n_expert         = 0
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: n_expert_used    = 0
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: causal attn      = 1
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: pooling type     = 0
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: rope type        = 2
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: rope scaling     = linear
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: freq_base_train  = 1000000.0
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: freq_scale_train = 1
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: n_ctx_orig_yarn  = 131072
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: rope_finetuned   = unknown
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: ssm_d_conv       = 0
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: ssm_d_inner      = 0
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: ssm_d_state      = 0
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: ssm_dt_rank      = 0
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: ssm_dt_b_c_rms   = 0
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: model type       = 14B
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: model ftype      = Q4_K - Medium
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: model params     = 14.77 B
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: model size       = 8.37 GiB (4.87 BPW)
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: general.name     = DeepSeek R1 Distill Qwen 14B
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: BOS token        = 151646 '<｜begin▁of▁sentence｜>'
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: EOS token        = 151643 '<｜end▁of▁sentence｜>'
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: EOT token        = 151643 '<｜end▁of▁sentence｜>'
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: PAD token        = 151643 '<｜end▁of▁sentence｜>'
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: LF token         = 148848 'ÄĬ'
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: FIM PRE token    = 151659 '<|fim_prefix|>'
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: FIM SUF token    = 151661 '<|fim_suffix|>'
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: FIM MID token    = 151660 '<|fim_middle|>'
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: FIM PAD token    = 151662 '<|fim_pad|>'
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: FIM REP token    = 151663 '<|repo_name|>'
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: FIM SEP token    = 151664 '<|file_sep|>'
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: EOG token        = 151643 '<｜end▁of▁sentence｜>'
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: EOG token        = 151662 '<|fim_pad|>'
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: EOG token        = 151663 '<|repo_name|>'
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: EOG token        = 151664 '<|file_sep|>'
+Jan 29 00:54:07 i3-6100 ollama[1477]: llm_load_print_meta: max token length = 256
+Jan 29 00:54:08 i3-6100 ollama[1477]: llm_load_tensors: offloading 48 repeating layers to GPU
+Jan 29 00:54:08 i3-6100 ollama[1477]: llm_load_tensors: offloading output layer to GPU
+Jan 29 00:54:08 i3-6100 ollama[1477]: llm_load_tensors: offloaded 49/49 layers to GPU
+Jan 29 00:54:08 i3-6100 ollama[1477]: llm_load_tensors:   CPU_Mapped model buffer size =   417.66 MiB
+Jan 29 00:54:08 i3-6100 ollama[1477]: llm_load_tensors:        CUDA0 model buffer size =  2679.51 MiB
+Jan 29 00:54:08 i3-6100 ollama[1477]: llm_load_tensors:        CUDA1 model buffer size =  2475.71 MiB
+Jan 29 00:54:08 i3-6100 ollama[1477]: llm_load_tensors:        CUDA2 model buffer size =  2993.16 MiB
+Jan 29 00:54:12 i3-6100 ollama[1477]: llama_new_context_with_model: n_seq_max     = 4
+Jan 29 00:54:12 i3-6100 ollama[1477]: llama_new_context_with_model: n_ctx         = 8192
+Jan 29 00:54:12 i3-6100 ollama[1477]: llama_new_context_with_model: n_ctx_per_seq = 2048
+Jan 29 00:54:12 i3-6100 ollama[1477]: llama_new_context_with_model: n_batch       = 2048
+Jan 29 00:54:12 i3-6100 ollama[1477]: llama_new_context_with_model: n_ubatch      = 512
+Jan 29 00:54:12 i3-6100 ollama[1477]: llama_new_context_with_model: flash_attn    = 0
+Jan 29 00:54:12 i3-6100 ollama[1477]: llama_new_context_with_model: freq_base     = 1000000.0
+Jan 29 00:54:12 i3-6100 ollama[1477]: llama_new_context_with_model: freq_scale    = 1
+Jan 29 00:54:12 i3-6100 ollama[1477]: llama_new_context_with_model: n_ctx_per_seq (2048) < n_ctx_train (131072) -- the full capacity of the model will not be utilized
+Jan 29 00:54:12 i3-6100 ollama[1477]: llama_kv_cache_init:      CUDA0 KV buffer size =   544.00 MiB
+Jan 29 00:54:12 i3-6100 ollama[1477]: llama_kv_cache_init:      CUDA1 KV buffer size =   512.00 MiB
+Jan 29 00:54:12 i3-6100 ollama[1477]: llama_kv_cache_init:      CUDA2 KV buffer size =   480.00 MiB
+Jan 29 00:54:12 i3-6100 ollama[1477]: llama_new_context_with_model: KV self size  = 1536.00 MiB, K (f16):  768.00 MiB, V (f16):  768.00 MiB
+Jan 29 00:54:12 i3-6100 ollama[1477]: llama_new_context_with_model:  CUDA_Host  output buffer size =     2.40 MiB
+Jan 29 00:54:12 i3-6100 ollama[1477]: llama_new_context_with_model: pipeline parallelism enabled (n_copies=4)
+Jan 29 00:54:12 i3-6100 ollama[1477]: llama_new_context_with_model:      CUDA0 compute buffer size =   784.01 MiB
+Jan 29 00:54:12 i3-6100 ollama[1477]: llama_new_context_with_model:      CUDA1 compute buffer size =   784.01 MiB
+Jan 29 00:54:12 i3-6100 ollama[1477]: llama_new_context_with_model:      CUDA2 compute buffer size =   784.02 MiB
+Jan 29 00:54:12 i3-6100 ollama[1477]: llama_new_context_with_model:  CUDA_Host compute buffer size =    74.02 MiB
+Jan 29 00:54:12 i3-6100 ollama[1477]: llama_new_context_with_model: graph nodes  = 1686
+Jan 29 00:54:12 i3-6100 ollama[1477]: llama_new_context_with_model: graph splits = 4
+Jan 29 00:54:12 i3-6100 ollama[1477]: time=2025-01-29T00:54:12.613+07:00 level=INFO source=server.go:594 msg="llama runner started in 5.77 seconds"
+Jan 29 00:54:12 i3-6100 ollama[1477]: [GIN] 2025/01/29 - 00:54:12 | 200 |  6.522383047s |       127.0.0.1 | POST     "/api/generate"
