@@ -1,6 +1,10 @@
 # ML - machine learning
 
-This is just a documentation of my learning progress. 
+This is just a documentation of my learning progress starting 2018. From 2024 on I created a few subfolders:
+
+- [llama.cpp](./llama.cpp)
+- [ollama](./ollama)
+- [deepseek](./deepseek)
 
 ## 2018 - Start with Object Detection
 
@@ -117,7 +121,7 @@ With the release of the [Blackwell](https://en.wikipedia.org/wiki/Blackwell_(mic
 
 ![Deprecated Architectures](pic/2025-01-24_cuda12.8.png)
 
-It looks like [Turing](https://en.wikipedia.org/wiki/Turing_(microarchitecture)) is still new enough to receive more updates and features with Compute Capability 7.5 since the new Ray-Tracing (RT) cores are included. This is found in [GeForce 16 series](https://en.wikipedia.org/wiki/GeForce_16_series) and [GeForce 20 series](https://en.wikipedia.org/wiki/GeForce_RTX_20_series).
+It looks like [Turing](https://en.wikipedia.org/wiki/Turing_(microarchitecture)) is still new enough to receive more updates and features with Compute Capability 7.5 since the new Ray-Tracing (RT) cores are included. This is found in [GeForce 16 series](https://en.wikipedia.org/wiki/GeForce_16_series) and [GeForce 20 series](https://en.wikipedia.org/wiki/GeForce_RTX_20_series). Another rationale could be the GSP (GPU System Processor) that is supported since driver 510 and integrated in the 20 series onward, while initially only used for enterprise solutions.
 
 ## Inference on local hardware
 
