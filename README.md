@@ -125,7 +125,13 @@ It looks like [Turing](https://en.wikipedia.org/wiki/Turing_(microarchitecture))
 
 ## Inference on local hardware
 
-In early 2023 I ran a 8b parameter model with a 4 bit quantization on my MacBook Pro at SSIS. It was impressive to see what's possible with just 8GB of RAM on a laptop! It became obvious that you need more RAM for larger models, so I built a new workstation with 128 GB RAM and a 18-core E5-2696 v3 CPU in early 2024. Well, it became another learning experience:
+### Early 2023: MacBook Pro M1 with 8GB RAM
+
+In early 2023 I ran a 8b parameter model with a 4 bit quantization on my MacBook Pro at SSIS. It was impressive to see what's possible with just 8GB of RAM on a laptop! 
+
+### Early 2024: Workstation with E5-2696v3 18C/36T and 128 GB ECC RAM
+
+It became obvious that you need more RAM for larger models, so I built a new workstation with 128 GB RAM and a 18-core E5-2696 v3 CPU in early 2024. Well, it became another learning experience:
 
 ![performance](pic/llm_cpu_gpu_tokens.png)
 
@@ -139,7 +145,7 @@ I found 20 tokens/s and faster to be a usable speed to use an LLM, and looking a
 
 Measurements above are done by Meta.
 
-## Correlation Model Size and TG token generation
+### Correlation Model Size and TG token generation - October 2024
 
 After some test runs with ollama in October 2024, reading documentation and the results of other people running tests it seems like there is a simple relationship for the token generation speed $T$ from the RAM bandwidth $B$ in GB/s and the model size $M$ in RAM in GB. I found an almost linear fit with a factor of 1.1, here simplified to 1:
 
@@ -166,7 +172,7 @@ The two M1 Max chips that are connected with some 10000 traces on the 2.5D chip 
 
 And while news to me, this very limit of the response time in LLMs is long known in the industry. And there are some novel ideas on how to circumvent the "latency bottleneck".
 
-## Faster inference with speculative execution
+### Faster inference with speculative execution
 
 Just reading the process and analyzing my findings this approach seems obvious. For one token the entire model has to be loaded from the VRAM into the cache of the GPU and processed. But most of the time the GPU is just waiting for new data to arrive. If we had a good guess for the next token, we could process the extended prompt at the same time with no measurable increased time to generate a token, but we would have 2 tokens generated! Here are some papers about this:
 
@@ -183,6 +189,14 @@ The above papers indicate that 2x or even 3x would be possible. I think you need
 
 I can't get to 2x with these values. I would need a much smaller model that is 50x smaller/faster than the large model to hit 2.37x.
 
+### Early 2025: Multi GPU machine for fast Inference
+
+![image llm server 1](pic/llmserver.jpg)
+
+### Summer 2025: Training with unsloth and Triton on Ampere GPU on dedicated server
+
+The machine is a i7-8700 with a RTX 3060 Ti. With only 8GB VRAM we are limited to smaller models, but with [unsloth.ai](https://unsloth.ai/) we can offload many layers and make better use of the system RAM.
+
 ## Lessons learned so far
 
 - 2023/03/05 Larger models are better, you need more RAM. More **expensive**.
@@ -191,6 +205,7 @@ I can't get to 2x with these values. I would need a much smaller model that is 5
 - 2024/10/05 It's actually the memory speed. Faster GPUs in general also have faster memory access. Only for the first PP (prompt processing) stage you need raw GPU power, after that in TG (token generation) or EV (evaluation) it is mainly RAM bandwidth. And again, faster RAM is more **expensive**.
 - 2024/11/10 Finally a reason to have more VRAM for the GPU and really fast memory. For smartphones: To use AI you need more memory. Flagships in Android had a lot of RAM compared to Apples offerings, but no convincing use case. With AI its capacity and speed! And in a way Apple was prepared for years with how the M1 was designed. Now all phones have 8 GB RAM.
 - 2024/11/25 Speculative execution could speed up things.
+- 2025/02/20 I've been using quantized models for years now. But there are different type of layers that react differently to quantization, and are unique in their dimension. More in the [Visual Guide to Quantization](https://www.maartengrootendorst.com/blog/quantization/) from Maarten Grootendorst. Including GPTQ and GGUF.
 
 
 ## History
@@ -203,3 +218,5 @@ I can't get to 2x with these values. I would need a much smaller model that is 5
 - __July 2024__ Reactivated the [https://kreier.github.io/jetson-car/](https://kreier.github.io/jetson-car/) project. The hardware is from 2019 (NVIDIA) but the software is still Ubuntu 18.04 LTS. Updates brake simple things like `make` and `gcc`.
 - __August 2024__ Started to work on [https://kreier.github.io/nano-gpt/](https://kreier.github.io/nano-gpt/) to learn more about LLMs, following Andrej Karpathy's project [https://github.com/karpathy/nanogpt](https://github.com/karpathy/nanogpt)
 - __December 2024__ Local Proxmox server with i7-8700 and RTX 3060 Ti running [llama3.1:8b](https://ollama.com/library/llama3.1) in [ollama](https://ollama.com/) over [open-webui](https://openwebui.com/) and [tailscale](https://tailscale.com/)
+- __January 2025__ Compiled [llama.cpp](https://github.com/ggml-org/llama.cpp) on some of [my machines](https://github.com/kreier/ml/tree/main/llama.cpp). Later included support to download from huggingface, and CUDA support.
+- __February 2025__ Finished the multi-GPU LLM machine. Now needs more software models to run on, and Grafana visualization of the utilization.
