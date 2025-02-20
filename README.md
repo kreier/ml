@@ -185,7 +185,7 @@ Just reading the process and analyzing my findings this approach seems obvious. 
 
 The above papers indicate that 2x or even 3x would be possible. I think you need very good conditions to achive that result - but from a probablility standpoint. One factor is that the speculation of further token takes up a considerable amount of time, and you want it to be fast (and small). On the other hand you want to have a high success rate. I played around with some parameters in a [Google Sheet](https://docs.google.com/spreadsheets/d/1SNf6ulzuzFyCcL6kMPn3qZZKFgRWvbiTxRUIxrRnBsk/edit?usp=sharing) and set the success rate to 90% and made the speculative model 20x faster/smaller. In this case the large model produces a token every 100ms, and the speculative model every 5 ms. Here is the result:
 
-<img src="https://kreier.github.io/ml/pic/1x1.png" width="15%"><img src="https://kreier.github.io/ml/pic/speculative_sampling.png" width="70%">
+<img src="https://kreier.github.io/ml/pic/1x1.png" width="15%"><img src="https://kreier.github.io/ml/pic/speculative_sampling.png" width="68%">
 
 I can't get to 2x with these values. I would need a much smaller model that is 50x smaller/faster than the large model to hit 2.37x.
 
@@ -193,7 +193,7 @@ I can't get to 2x with these values. I would need a much smaller model that is 5
 
 After learning in October 2024 that I not only need a lot of RAM, but it also needs to be fast - preferably VRAM - I frankensteined a damaged EVGA Z170 mainboard together with a cheap i3-6100 CPU and four graphics cards (plus one integrated) for a penta-GPU server:
 
-<img src="https://kreier.github.io/ml/pic/2025-01_server_display.jpg" width="38%"><img src="https://github.com/kreier/ml/pic/2025-01_server.jpg" width="60%">
+<img src="https://kreier.github.io/ml/pic/2025-01_server_display.jpg" width="39%"> <img src="https://raw.githubusercontent.com/kreier/ml/refs/heads/main/pic/2025-01_server.jpg" width="59%">
 
 ### Summer 2025: Training with unsloth and Triton on Ampere GPU on dedicated server
 
