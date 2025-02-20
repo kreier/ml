@@ -191,11 +191,25 @@ I can't get to 2x with these values. I would need a much smaller model that is 5
 
 ### Early 2025: Multi GPU machine for fast Inference
 
-![image llm server 1](pic/llmserver.jpg)
+After learning in October 2024 that I not only need a lot of RAM, but it also needs to be fast - preferably VRAM - I frankensteined a damaged EVGA Z170 mainboard together with a cheap i3-6100 CPU and four graphics cards (plus one integrated) for a penta-GPU server:
+
+<img src="https://kreier.github.io/ml/pic/2025-01_server_display.jpg" width="38%"><img src="https://github.com/kreier/ml/pic/2025-01_server.jpg" width="60%">
 
 ### Summer 2025: Training with unsloth and Triton on Ampere GPU on dedicated server
 
 The machine is a i7-8700 with a RTX 3060 Ti. With only 8GB VRAM we are limited to smaller models, but with [unsloth.ai](https://unsloth.ai/) we can offload many layers and make better use of the system RAM.
+
+## Improved performance of LLMs in just 1.5 years
+
+With the open source model Deepseek R1 published early 2025 the gap between closed source and open source models became narrower again. [epoch.ai](https://epoch.ai/) has some interactive graphs, for example the [following one](https://epoch.ai/data/ai-benchmarking-dashboard) for the [GPQA](https://github.com/idavidrein/gpqa) Diamond questions.
+
+![Benchmarks 2023 - 2025](pic/2025-01_benchmarks.svg)
+
+The article [How Far Behind Are Open Models?](https://epoch.ai/blog/open-models-report) explores this topic further in detail, for example in benchmarks like [GPQA](https://huggingface.co/papers/2311.12022), 
+
+It seems that the use of GPUs with AlexNet in 2014 changed the speed of development (and willingness to deploy resources) significantly (from [notable AI models](https://epoch.ai/data/notable-ai-models)):
+
+![notable AI models](pic/2025-02_notable_ai_models.svg)
 
 ## Lessons learned so far
 
