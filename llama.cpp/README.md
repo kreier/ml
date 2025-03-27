@@ -2,20 +2,20 @@
 
 The [instructions](https://github.com/ggerganov/llama.cpp/blob/master/docs/build.md) are available on the llama.cpp website, but in general miss the libcurls, which gets the error message
 
-```
+``` 
 llama_load_model_from_hf: llama.cpp built without libcurl, downloading from Hugging Face not supported.
 ```
 
 Therefore my procedure is:
 
 ``` sh
-git clone https://github.com/ggerganov/llama.cpp
+git clone https://github.com/ggml-org/llama.cpp
 cd llama.cpp
 cmake -B build -DLLAMA_CURL=ON
 cmake --build build --config Release
 ```
 
-Also, if I remember correctly you might need the libcurl4-openssl-dev package as well.
+Also, if I remember correctly you might need the libcurl4-openssl-dev package as well. Yep, [discussion from October 2024](https://github.com/ggml-org/llama.cpp/discussions/9835).
 
 ```
 sudo apt install libcurl4-openssl-dev
