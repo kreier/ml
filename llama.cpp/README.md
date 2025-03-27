@@ -113,3 +113,43 @@ build: 19d3c829 (4677)
 | qwen2 1.5B Q4_K - Medium | 1.04 GiB |  1.78 B | CUDA    | 999 |  tg128 |     233.28 ± 2.37 |
 
 The old instructions were: `./llama.cpp/build/bin/llama-bench -m .cache/llama.cpp/bartowski_DeepSeek-R1-Distill-Qwen-1.5B-GGUF_DeepSeek-R1-Distill-Qwen-1.5B-Q4_K_M.gguf -ngl 999`
+
+### Example TinyLlama-1.1B-Chat
+
+Prompt to start and download the 4Q_K_M model:
+
+``` sh
+mk@i3:~/llama.cpp$ ./build/bin/llama-cli -hf TheBloke/TinyLlama-1.1B-Chat-v1.0-GGUF:Q4_K_M
+```
+
+#### Result CPU
+
+```
+| model                  |       size | params | backend | threads |  test |            t/s |
+| ---------------------- | ---------: | -----: | ------- | ------: | ----: | -------------: |
+| llama 1B Q4_K - Medium | 636.18 MiB | 1.10 B | CPU     |       4 | pp512 | 102.88 ± 19.54 |
+| llama 1B Q4_K - Medium | 636.18 MiB | 1.10 B | CPU     |       4 | tg128 |   40.96 ± 0.49 |
+
+build: f125b8dc (4977)
+```
+
+#### Result GPU
+
+```
+mk@i3:~/llama.cpp$ ./build/bin/llama-bench -m
+../.cache/llama.cpp/TheBloke_TinyLlama-1.1B-Chat-v1.0-GGUF_tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf
+ggml_cuda_init: GGML_CUDA_FORCE_MMQ:    no
+ggml_cuda_init: GGML_CUDA_FORCE_CUBLAS: no
+ggml_cuda_init: found 1 CUDA devices:
+  Device 0: NVIDIA GeForce RTX 3070 Ti, compute capability 8.6, VMM: yes
+| model                  |       size | params | backend | ngl |   test |               t/s |
+| ---------------------- | ---------: | -----: | ------- | --: | -----: | ----------------: |
+| llama 1B Q4_K - Medium | 636.18 MiB | 1.10 B | CUDA    |  99 |  pp512 | 12830.34 ± 186.18 |
+| llama 1B Q4_K - Medium | 636.18 MiB | 1.10 B | CUDA    |  99 |  tg128 |    325.35 ± 11.50 |
+
+build: f125b8dc (4977)
+```
+
+#### Jetson Nano
+
+On a Jetson Nano this model only gets 4.98 tg128 and 6.71 pp512.
