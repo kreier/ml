@@ -215,6 +215,10 @@ For comparison my experience, taken from my [benchmark repository](https://kreie
 
 ![my GFLOPS experience](https://kreier.github.io/benchmark/docs/GFLOPS_time.svg)
 
+Combined:
+
+![my GFLOPS experience](https://kreier.github.io/ml/pic/2025-02_notable_ai_models_combined.svg)
+
 ## Lessons learned so far
 
 - 2023/03/05 Larger models are better, you need more RAM. More **expensive**.
