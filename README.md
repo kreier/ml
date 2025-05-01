@@ -211,6 +211,10 @@ It seems that the use of GPUs with AlexNet in 2014 changed the speed of developm
 
 ![notable AI models](pic/2025-02_notable_ai_models.svg)
 
+For comparison my experience, taken from my [benchmark repository](https://kreier.github.io/benchmark/). FLOPS only $10^9$ to $10^{14}$, equal to $10^{16}$ to $10^{21}$ when running for 115 days (4 months).
+
+![my GFLOPS experience](https://kreier.github.io/benchmark/docs/GFLOPS_time.svg)
+
 ## Lessons learned so far
 
 - 2023/03/05 Larger models are better, you need more RAM. More **expensive**.
@@ -220,6 +224,7 @@ It seems that the use of GPUs with AlexNet in 2014 changed the speed of developm
 - 2024/11/10 Finally a reason to have more VRAM for the GPU and really fast memory. For smartphones: To use AI you need more memory. Flagships in Android had a lot of RAM compared to Apples offerings, but no convincing use case. With AI its capacity and speed! And in a way Apple was prepared for years with how the M1 was designed. Now all phones have 8 GB RAM.
 - 2024/11/25 Speculative execution could speed up things.
 - 2025/02/20 I've been using quantized models for years now. But there are different type of layers that react differently to quantization, and are unique in their dimension. More in the [Visual Guide to Quantization](https://www.maartengrootendorst.com/blog/quantization/) from Maarten Grootendorst. Including GPTQ and GGUF.
+- 2025/05/01 [MoE](https://en.wikipedia.org/wiki/Mixture_of_experts) will speed up things! Since only a fraction of the model needs to be processed with the context, the speedup could be in the range of the number of experts. [Llama 4 Scout](https://ai.meta.com/blog/llama-4-multimodal-intelligence/) has 16 experts, only 17B active parameters of the 109B total parameters are active at one given time. That's 6.4x. Unfortunately the whole model needs to be in VRAM - [65.6GB for Q4_K_XL from unsloth](https://huggingface.co/unsloth/Llama-4-Scout-17B-16E-Instruct-GGUF). My quad-gpu server has only 24 GB VRAM. And Llama 4 Maverick with 128 experts would even need [243GB with Q4_K_XL (4.5bit)](https://huggingface.co/unsloth/Llama-4-Maverick-17B-128E-Instruct-GGUF). BF16: 801GB. At least theoretically 23x faster. Selective loading to VRAM from SSD? [math](chatgpt/moe-math.md).
 
 
 ## History
