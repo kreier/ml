@@ -1,5 +1,9 @@
 # ML - machine learning
 
+![GitHub Release](https://img.shields.io/github/v/release/kreier/ml)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/y/kreier/ml)
+![GitHub License](https://img.shields.io/github/license/kreier/ml)
+
 This is just a documentation of my learning progress starting 2018. From 2024 on I created a few subfolders:
 
 - [llama.cpp](./llama.cpp)
