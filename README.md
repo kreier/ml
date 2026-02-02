@@ -1,3 +1,10 @@
+---
+layout: default
+title: Home Lab Stack
+nav_order: 1
+has_mermaid: true
+---
+
 # ML - machine learning
 
 ![GitHub Release](https://img.shields.io/github/v/release/kreier/ml)
@@ -161,7 +168,10 @@ This approximated linear relation can be seen in the Apple Silicon graph in the 
 
 What's with the M CPUs from Apple? [Anandtech tested the memory bandwidth](https://www.anandtech.com/show/17024/apple-m1-max-performance-review/2) for the Ultra CPU and found that the CPU can't use all the memory bandwidth (M1 128bit wide, M2 Pro 256 bit wide, M4 Max 512 bit wide, M2 Ultra 1024 bit wide). Maybe the reason is that the 8 LPDDR5 128bit controller have to move the data across the chip to the GPU in some instances. Here is a die picture just from the M1 Max chip, see how much area is used just for the memory controllers:
 
+<!--
 <img src="https://kreier.github.io/ml/pic/1x1.png" width="25%"><img src="https://images.anandtech.com/doci/17019/M1MAX.jpg" width="50%">
+-->
+<img src="https://kreier.github.io/ml/pic/1x1.png" width="25%"><img src="https://kreier.github.io/ml/pic/M1MAX.webp" width="50%">
 
 The two M1 Max chips that are connected with some 10000 traces on the 2.5D chip packaging interposer for 2.5 TB/s bandwidth. This should be enough for the "just" 0.8 TB/s memory bandwidth, but maybe it's not always as aligned as wanted, or a better driver would improve speed there. So that the GPU cores have their dedicated RAM segment to work on and little data has to be moved over the UltraFusion interface. [Anandtech wrote about](https://www.anandtech.com/show/17306/apple-announces-m1-ultra-combining-two-m1-maxes-for-even-more-performance) this technology in 2022. [Another test in 2023](https://macperformanceguide.com/MacPro2023-MemoryBandwidth.html) only saw 240 GB/s for the M2 Ultra - limit for the CPU? Anyway, here my findings for memory speed in a table:
 
@@ -223,6 +233,53 @@ Combined:
 
 ![my GFLOPS experience](https://kreier.github.io/ml/pic/2025-02_notable_ai_models_combined.svg)
 
+## Slow LLM server in a container
+
+Let's hope this Mermaid diagram is shown on the webpage:
+
+```mermaid
+graph TD
+    subgraph Hardware [Physical Layer]
+        A[HP EliteDesk 800 G4 Mini<br/>i5-8500T - RAM - NVMe]
+    end
+
+    subgraph Hypervisor [Virtualization Layer]
+        B[Proxmox VE]
+    end
+
+    subgraph VM [Virtual Machine]
+        C[Ubuntu 24.04.3 LTS]
+        
+        subgraph Runtime [Container Engine]
+            D[Docker / Docker Compose]
+            
+            subgraph Containers [Application Layer]
+                E1[Traefik]
+                E2[WordPress]
+                E3[Ollama]
+                E4[Open WebUI]
+                E5[Grafana]
+                E6[Home Assistant]
+            end
+        end
+    end
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E1
+    D --> E2
+    D --> E3
+    D --> E4
+    D --> E5
+    D --> E6
+
+    style A fill:#f9f,stroke:#333,stroke-width:2px
+    style B fill:#bbf,stroke:#333,stroke-width:2px
+    style C fill:#dfd,stroke:#333,stroke-width:2px
+    style D fill:#ffd,stroke:#333,stroke-width:2px
+```
+
 ## Lessons learned so far
 
 - 2023/03/05 Larger models are better, you need more RAM. More **expensive**.
@@ -247,3 +304,4 @@ Combined:
 - __December 2024__ Local Proxmox server with i7-8700 and RTX 3060 Ti running [llama3.1:8b](https://ollama.com/library/llama3.1) in [ollama](https://ollama.com/) over [open-webui](https://openwebui.com/) and [tailscale](https://tailscale.com/)
 - __January 2025__ Compiled [llama.cpp](https://github.com/ggml-org/llama.cpp) on some of [my machines](https://github.com/kreier/ml/tree/main/llama.cpp). Later included support to download from huggingface, and CUDA support.
 - __February 2025__ Finished the multi-GPU LLM machine. Now needs more software models to run on, and Grafana visualization of the utilization.
+- __January 2026__ The multi-GPU LLM machine is finally working. Down to just 3 GPUs with a total of 22 GB VRAM it is ok for [translategemma 27b](https://ollama.com/library/translategemma) and [glm-4.7-flash 30B](https://ollama.com/library/glm-4.7-flash) over Open WebUI
