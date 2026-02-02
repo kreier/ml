@@ -1,10 +1,3 @@
----
-layout: default
-title: Home Lab Stack
-nav_order: 1
-has_mermaid: true
----
-
 # ML - machine learning
 
 ![GitHub Release](https://img.shields.io/github/v/release/kreier/ml)
