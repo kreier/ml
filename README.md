@@ -104,6 +104,7 @@ Let's see what I have and what CUDA Compute Capabilities (CC) these support:
 | GTX 960       |  1024 | 5.2 | E5-2696 v3  | Maxwell (2014) |    2 |
 | Jetson Nano   |   128 | 5.3 |             | [Maxwell](https://en.wikipedia.org/wiki/Maxwell_(microarchitecture)) (2014) |    4 |
 | GTX 1060      |  1280 | 6.1 | i3-6100     | [Pascal](https://en.wikipedia.org/wiki/Pascal_(microarchitecture)) (2016)  |    6 |
+| P104-100      |  1920 | 6.1 | i3-6100     | Pascal (2016)  |    8 |
 | T4            |  2560 | 7.5 | Google Colab | Turing (2018) |   16 |
 | RTX 2080 Ti   |  4352 | 7.5 | i5-7600K    | [Turing](https://en.wikipedia.org/wiki/Turing_(microarchitecture)) (2018)  |   11 |
 | RTX 3060 Ti   |  4864 | 8.6 | i7-8700     | Ampere (2020)  |    8 |
@@ -168,14 +169,24 @@ What's with the M CPUs from Apple? [Anandtech tested the memory bandwidth](https
 
 The two M1 Max chips that are connected with some 10000 traces on the 2.5D chip packaging interposer for 2.5 TB/s bandwidth. This should be enough for the "just" 0.8 TB/s memory bandwidth, but maybe it's not always as aligned as wanted, or a better driver would improve speed there. So that the GPU cores have their dedicated RAM segment to work on and little data has to be moved over the UltraFusion interface. [Anandtech wrote about](https://www.anandtech.com/show/17306/apple-announces-m1-ultra-combining-two-m1-maxes-for-even-more-performance) this technology in 2022. [Another test in 2023](https://macperformanceguide.com/MacPro2023-MemoryBandwidth.html) only saw 240 GB/s for the M2 Ultra - limit for the CPU? Anyway, here my findings for memory speed in a table:
 
-| CPU        | Memory             | GByte/s | x | GPU           | Memory             | GByte/s |
-|------------|--------------------|---------|---|---------------|--------------------|---------|
-| E3-1226 v3 | DDR3 1333          |      22 |   | [Jetson Nano](https://www.techpowerup.com/gpu-specs/jetson-nano.c3643)   | 4GB LPDDR4 64bit   |      25 |
-| i7-8700    | DDR4 2666          |      35 |   | [Quadro M1000M](https://www.techpowerup.com/gpu-specs/quadro-m1000m.c2739) | 2GB GDDR5 128bit   |      80 |
-| i7-13700T  | DDR4 3200 128bit   |      43 |   | [P106-100](https://www.techpowerup.com/gpu-specs/p106-100.c2980)      | 6GB GDDR5 192bit   |     192 |
-| Apple M1   | LPDDR4X 4266       |      66 |   | [RTX 3070 Ti](https://www.techpowerup.com/gpu-specs/geforce-rtx-3070-ti.c3675)   | 8 GB GDDR6X 256bit |     608 |
-| M3 Max     | LPDDR5 6400 512bit |     409 |   | [P100](https://www.techpowerup.com/gpu-specs/tesla-p100-pcie-16-gb.c2888)          | 16 GB HBM2 4096bit |     732 |
-| M4 Max     | LPDDR5X 8533       |     546 |   | [RTX 6000 Ada](https://www.techpowerup.com/gpu-specs/rtx-6000-ada-generation.c3933)  | 48 GB GDDR6 384bit |     960 |
+| CPU        | Memory             | GByte/s |
+|------------|--------------------|---------|
+| E3-1226 v3 | DDR3 1333          |      22 |
+| i7-8700    | DDR4 2666          |      35 |
+| i7-13700T  | DDR4 3200 128bit   |      43 |
+| Apple M1   | LPDDR4X 4266       |      66 |
+| M3 Max     | LPDDR5 6400 512bit |     409 |
+| M4 Max     | LPDDR5X 8533       |     546 |
+
+| GPU           | Memory             | GByte/s |
+|---------------|--------------------|---------|
+| [Jetson Nano](https://www.techpowerup.com/gpu-specs/jetson-nano.c3643)   | 4GB LPDDR4 64bit   |      25 |
+| [Quadro M1000M](https://www.techpowerup.com/gpu-specs/quadro-m1000m.c2739) | 2GB GDDR5 128bit   |      80 |
+| [P106-100](https://www.techpowerup.com/gpu-specs/p106-100.c2980)      | 6GB GDDR5 192bit   |     192 |
+| [P104-100](https://www.techpowerup.com/gpu-specs/p104-100.c2981)      | 8 GB DDR5X 256bit   |     320 |
+| [RTX 3070 Ti](https://www.techpowerup.com/gpu-specs/geforce-rtx-3070-ti.c3675)   | 8 GB GDDR6X 256bit |     608 |
+| [P100](https://www.techpowerup.com/gpu-specs/tesla-p100-pcie-16-gb.c2888)          | 16 GB HBM2 4096bit |     732 |
+| [RTX 6000 Ada](https://www.techpowerup.com/gpu-specs/rtx-6000-ada-generation.c3933)  | 48 GB GDDR6 384bit |     960 |
 
 And while news to me, this very limit of the response time in LLMs is long known in the industry. And there are some novel ideas on how to circumvent the "latency bottleneck".
 
@@ -283,7 +294,7 @@ graph TD
 - 2024/11/25 Speculative execution could speed up things.
 - 2025/02/20 I've been using quantized models for years now. But there are different type of layers that react differently to quantization, and are unique in their dimension. More in the [Visual Guide to Quantization](https://www.maartengrootendorst.com/blog/quantization/) from Maarten Grootendorst. Including GPTQ and GGUF.
 - 2025/05/01 [MoE](https://en.wikipedia.org/wiki/Mixture_of_experts) will speed up things! Since only a fraction of the model needs to be processed with the context, the speedup could be in the range of the number of experts. [Llama 4 Scout](https://ai.meta.com/blog/llama-4-multimodal-intelligence/) has 16 experts, only 17B active parameters of the 109B total parameters are active at one given time. That's 6.4x. Unfortunately the whole model needs to be in VRAM - [65.6GB for Q4_K_XL from unsloth](https://huggingface.co/unsloth/Llama-4-Scout-17B-16E-Instruct-GGUF). My quad-gpu server has only 24 GB VRAM. And Llama 4 Maverick with 128 experts would even need [243GB with Q4_K_XL (4.5bit)](https://huggingface.co/unsloth/Llama-4-Maverick-17B-128E-Instruct-GGUF). BF16: 801GB. At least theoretically 23x faster. Selective loading to VRAM from SSD? [math](chatgpt/moe-math.md). And one day later [IBM releases Granite 4.0](https://www.ibm.com/new/announcements/ibm-granite-4-0-tiny-preview-sneak-peek) - combining [MoE](https://www.ibm.com/think/topics/mixture-of-experts) with Mamba (6S) and other details!
-
+- 2026/03/06 MoE makes CPU systems ore usable and my Penta-GPU server with 30 GB run 30B models efficiently. Even my old HP Z600 with Dual-Xeon X5550 and 24 GB DDR3 can run lfm2:24b with 14GB VRAM and 5 t/s. Dual P104-100 gets __ t/s for "Explain the french revolution in 1000 words"
 
 ## History
 
